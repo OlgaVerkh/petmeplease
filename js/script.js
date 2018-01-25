@@ -7,7 +7,7 @@ $(document).ready(function(){
 	  	items: 1,
 	  	autoHeight: true,
 	  	navText: ['', '']
-  });	
+  });
 });
 
 
@@ -27,9 +27,9 @@ $('.give-ad-btn').on('click', function(e) {
            }
        },
        error: function(err) {
-            console.log(err);   
+            console.log(err);
    }
-   }); 
+   });
 });
 
 
@@ -54,6 +54,38 @@ setInterval(function() {
         }
     });
 }, 1000 * 20);
+
+// Pagination on scroll
+var inProgress = false;
+var startFrom = 4;
+
+window.addEventListener('scroll', function(e) {
+    var scrolled = window.pageYOffset || document.documentElement.scrollTop;
+    var la = document.querySelector('.latest-ads');
+    var laBounding = document.querySelector('.latest-ads').getBoundingClientRect();
+    // console.log(scrolled + ' scrolled');
+    // console.log(laBounding.height + laBounding.y - la.offsetTop  + ' laOffset');
+    if(laBounding.height + laBounding.y - la.offsetTop <= 0) {
+        console.log('loading new content');
+
+        $.ajax({
+            method: 'POST',
+            url: '../scroll.php',
+            data: {"startFrom" : startFrom},
+            beforeSend: function() {
+            inProgress = true;
+            }
+            }).done(function(data) {
+            console.log(data);
+            if (data.length > 0) {
+            $.each(data, function(index, data){
+            //$(".latest-ads").append("<div class="latest-ad"><div class="price">" + data.ad_animal_price + "</div><div class="flex-container"><div class="latest-ad-img"><img src="" alt=""></div><div class="flex-item"><h3><a href="">" + data.ad_title + "</a></h3><span class="ad-date">" + data.ad_createDate + "</span><p class="ad-city">" + data.ad_city_id + "</p><p class="ad-text">" + data.ad_text + "</p></div></div></div>");
+            });
+            inProgress = false;
+            startFrom += 10;
+            }});
+        }
+});
 
 
 
