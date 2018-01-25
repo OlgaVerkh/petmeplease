@@ -1,0 +1,15 @@
+<div class="authorization-form">
+	<div class="logo"><img src="<?=IMG . 'pmp-logo_color.png' ?>" alt=""></div>
+	<h3>Вход в личный кабинет</h3>
+	<form name="enterForm" action="../login.php" method="post" class="enterForm">
+		<input type="text" name="email" placeholder="Email">
+		<input type="password" name="pass" placeholder="пароль">
+
+		<a href="">Забыли пароль?</a>
+
+		<input class="choose-btn" type="submit" value="ВОЙТИ">
+	</form>
+	Нет аккаунта? <a href= "<?= SUBDOMAIN?>registration/">Зарегистрируйтесь</a>
+	
+	<p id="flashMessage"></p>
+</div>

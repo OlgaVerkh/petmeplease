@@ -1,0 +1,191 @@
+<?php
+    $db = getConnect();
+    $user_id = getUserId();
+    $ad_id = (int)$_GET['ad_id'];
+    
+      $ads = mysqli_query($db, '
+        SELECT * FROM ad
+        LEFT JOIN city ON city_id = ad_city_id
+        LEFT JOIN kind ON kind_id = ad_animal_kind_id
+        LEFT JOIN breed ON breed_id = ad_animal_breed_id
+        LEFT JOIN section ON section_id = ad_section_id
+        WHERE ad_user_id = "'.$user_id.'"
+        AND ad_id = "'.$ad_id.'";
+    ');
+    
+    $ad = mysqli_fetch_assoc($ads);   
+        
+    $photos = mysqli_query($db, '
+        SELECT photo_link, photo_id
+        FROM photo
+        WHERE photo_ad_id = "'.$ad_id.'";
+    ');
+
+    $photos = mysqli_fetch_all($photos, MYSQLI_ASSOC); 
+    
+    $user = mysqli_query($db, '
+        SELECT ad.ad_id, user.user_id, user.user_name, user.user_lastname, user.user_tel, user.user_avatar
+        FROM ad
+        LEFT JOIN user ON user_id = ad_user_id
+        WHERE ad_id = "'.$ad_id.'";
+    ');
+    
+    $user = mysqli_fetch_assoc($user);
+    
+    $c = mysqli_query($db, "
+	SELECT * FROM city
+    ");
+    $allCities = mysqli_fetch_all($c, MYSQLI_ASSOC);
+    
+    $s = mysqli_query($db, "
+	SELECT * FROM section
+    ");
+    $allSections = mysqli_fetch_all($s, MYSQLI_ASSOC);
+    
+    $k = mysqli_query($db, "
+	SELECT * FROM kind
+    ");
+    $allKinds = mysqli_fetch_all($k, MYSQLI_ASSOC);
+    
+    $b = mysqli_query($db, "
+    SELECT * FROM breed WHERE breed_kind_id = 1
+    ");
+    $allBreeds = mysqli_fetch_all($b, MYSQLI_ASSOC);
+    
+    
+
+?>
+
+
+<div class="single-ad-edit">
+	<div class="first-row">
+
+		<h2><?=$ad['ad_title']?></h2>
+		<div class="single-ad-price"><?= (bool)($ad['ad_animal_price']) ? $ad['ad_animal_price'] . ' рублей' : 'Цена не установлена' ?></div>
+	</div>
+
+	<div class="second-row">
+
+		<div class="single-ad-img">
+			<?if(!isset($photos[0]['photo_link'])):?>
+			    <img src="../upload/default.png" alt="">
+			    <?else:?>
+			    <?foreach($photos as $photo):?>
+			        <img src="../<?=$photo['photo_link']?>" alt="">
+			    <?endforeach;?>
+			<?endif;?>
+		</div>
+
+		<div class="ad-info">
+			<div class="ad-date"><?=date('d-m-Y', strtotime($ad['ad_createDate']))?></div>
+			<div class="ad-city"><span class="bold">Город: </span><?=$ad['city_name']?></div>
+			<div class="ad-animal"><span class="bold">Животное: </span><?=$ad['kind_name']?></div>
+			<div class="ad-animal-breed"><span class="bold">Порода: </span><?=$ad['breed_name']?></div>
+			<div class="ad-animal-sex"><span class="bold">Пол: </span><?= ($ad['ad_animal_sex'] == "1") ? 'мальчик' : 'девочка'?></div>
+			<div class="ad-animal-age"><span class="bold">Возраст: </span><?=$ad['ad_animal_age']?></div>
+		</div>
+	</div>
+
+	<div class="third-row">
+
+		<div class="ad-text"><p class="bold">Текст объявления</p><?=$ad['ad_text']?></div>
+        
+        <div class="manage-icons">
+        <div class="edit"><img src="<?=IMG . 'edit-icon.png' ?>" alt="редактировать"></div>
+        <div class="delete"><img src="<?=IMG . 'delete-icon.png' ?>" alt="удалить"></div>
+        </div>
+
+	</div>
+</div>
+
+<div class="edit-form">
+   <div class="edit-form-content">
+   
+   <div class="close"><img src="<?=IMG . 'close-icon.png' ?>" alt=""></div>
+    <form class="addAdForm" action="" method="post">
+       
+	<label class="req" for="">Заголовок объявления</label>
+	<input type="text" name="adTitle" value="<?=$ad['ad_title']?>">
+	
+	<label class="req" for="">Тип объявления</label>
+		<select name="section" id="">
+			<?foreach($allSections as $section):?>
+		        <option <?= $ad['ad_section_id'] == $section['section_id'] ? 'selected' : ''  ?> value="<?=$section['section_id']?>">
+		            <?=$section['section_name']?>
+		        </option>
+              <?endforeach?>  
+		</select>
+	
+	<label class="req" for="">Город</label>
+		<select name="city" id="">
+			<?foreach($allCities as $city):?>
+		        <option <?= $ad['ad_city_id'] == $city['city_id'] ? 'selected' : ''  ?> value="<?=$city['city_id']?>">
+		            <?=$city['city_name']?>
+		        </option>
+              <?endforeach?>
+		</select>
+	
+	<label class="req" for="">Животное</label>
+		<select name="kind" id="">
+			<?foreach($allKinds as $kind):?>
+		        <option <?= $ad['ad_animal_kind_id'] == $kind['kind_id'] ? 'selected' : ''  ?> value="<?=$kind['kind_id']?>">
+		            <?=$kind['kind_name']?>
+		        </option>
+              <?endforeach?>
+		</select>
+	
+	<div class="create-ad-flex-container">
+	<div class="create-ad-flex-item">
+	<label class="req" for="">Порода</label>
+		<select name="breed" id="">
+			<?foreach($allBreeds as $breed):?>
+		        <option <?= $ad['ad_animal_breed_id'] == $breed['breed_id'] ? 'selected' : ''  ?> value="<?=$breed['breed_id']?>">
+		            <?=$breed['breed_name']?>
+		        </option>
+              <?endforeach?>
+		</select>
+	
+	
+	<label class="req" for="">Возраст</label>
+	<input type="text" name="animalAge" value="<?=$ad['ad_animal_age']?>">
+	</div>
+	
+	<div class="create-ad-flex-item">
+	<label class="req" for="">Пол</label>
+	<select name="sex" id="">
+	    <option <?= (int)$ad['ad_animal_sex'] == 1 ? 'selected' : ''  ?> value="1">мальчик</option>
+	    <option <?= (int)$ad['ad_animal_sex'] == 2 ? 'selected' : ''  ?> value="2">девочка</option>
+	</select>
+	
+	
+	<label for="">Цена</label>
+	<input type="text" name="animalPrice" value="<?=$ad['ad_animal_price']?>">
+	</div>
+	</div>
+	
+	<?if(isset($photos[0]['photo_link'])):?>
+	<ul class="edit-form-content-photos">
+        <?foreach($photos as $photo):?>
+	    <li><img src="<?=$photo['photo_link']?>" alt=""><a data-photoid="<?=$photo['photo_id']?>" href="">Удалить</a></li>
+	    <?endforeach;?>
+	</ul>
+	<?endif;?>
+	
+	<label class="req" for="">Текст объявления</label>
+	<textarea name="comment" cols="40" rows="7" name="adText"><?=$ad['ad_text']?></textarea>
+		
+	<div class="file-upload">
+	    <label for="file_upload">Загрузить фото</label>
+	    <input type="file" name="file_upload[]" id="file_upload" accept="image/jpeg, image/jpg, image/png" multiple>
+	    </div>
+	
+	<input id="publish-btn" type="submit" value="ОПУБЛИКОВАТЬ">    
+    </form>
+    </div>
+</div>
+
+<p id="flashMessageAd"></p>
+
+
+</div>
+</div>

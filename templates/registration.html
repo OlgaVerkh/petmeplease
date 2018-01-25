@@ -1,0 +1,22 @@
+<div class="registration-form">
+	<div class="logo"><img src="<?=IMG . 'pmp-logo_color.png' ?>" alt=""></div>
+	<h3>Регистрация</h3>
+	<form name="registrationForm" action="../reg.php" method="post" class="registrationForm">
+
+		<input type="text" name="email" placeholder="Email">
+		<input type="password" name="pass" placeholder="пароль">
+		<input type="password" name="pass2" placeholder="повторите пароль">
+
+	<div class="agree-mark">
+      <label class="last-label">
+       <input class="radio-custom" type="checkbox" value="1" name="familiar"><span></span>
+    </label>
+     <p class="agree">Я согласен с <a href="">Правилами сайта</a> и <br><a href="">Политикой конфиденциальности</a></p>
+     </div>
+
+		<input class="give-ad-btn" type="submit" value="ЗАРЕГИСТРИРОВАТЬСЯ">
+	</form>
+	
+	<p id="flashMessage"></p>
+	
+</div>

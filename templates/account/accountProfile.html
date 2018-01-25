@@ -1,0 +1,40 @@
+<?php
+$db = getConnect();
+$user_id = getUserId();
+
+$query = mysqli_query($db, '
+    SELECT user_name, user_lastname, user_tel
+    FROM user
+    WHERE user_id = "' . $user_id . '"
+');
+
+$query = mysqli_fetch_assoc($query);
+
+
+?>
+
+
+
+<div class="profile-info">
+	<form class="editProfile" action="../editProfile.php" method="post" name="editProfile">
+		<label class="req" for="">Имя</label>
+		<input name="user_name" type="text" value="<?=$query['user_name']?>">
+
+		<label class="req" for="">Фамилия</label>
+		<input name="user_lastname" type="text" value="<?=$query['user_lastname']?>">
+
+		<label class="req" for="">Телефон</label>
+		<input name="user_tel" type="text" value="<?=$query['user_tel']?>">
+
+	    <div class="file-upload">
+	    <label for="file_upload">загрузить фото</label>
+	    <input type="file" name="file_upload" id="file_upload">
+	    </div>
+
+		<input class="change-btn" type="submit" value="изменить">
+
+	</form>
+</div>
+<p id="flashMessageProfile"></p>
+	</div>
+	</div>

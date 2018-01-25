@@ -1,0 +1,71 @@
+<?php
+    $db = getConnect();
+    $user_id = getUserId();
+    
+    $userMessages = mysqli_query($db, '
+        SELECT message.*, ad.ad_id, ad.ad_title, user.user_name, user.user_lastname, user.user_avatar
+        FROM message
+        LEFT JOIN ad ON message_idAd = ad_id
+        LEFT JOIN user ON message_idUser = user_id
+        WHERE message_receiver_id = "' . $user_id . '"
+        ORDER BY message_status;
+    ');
+    
+    $userMessages = mysqli_fetch_all($userMessages, MYSQLI_ASSOC);
+    
+?>
+
+<?foreach($userMessages as $key => $message):?>
+<div class="account-message">
+	<div class="message-author">
+	<div class="author-avatar">
+	<img src="../<?=isset($message['user_avatar']) ? $message['user_avatar'] : 'upload/default.png'?>" alt="">
+	</div>
+	<div class="author-name">
+	<?=$message['user_name']?> <?=$message['user_lastname']?></div>
+	</div>
+	<div class="message-text">
+	<div class="message-date"><?=date('d-m-Y', strtotime($message['message_createDate']))?></div>
+	<p class="bold colored">Входящее сообщение</p>
+	<div class="message-ad-name">Ответ на объявление: <a href=""><?=isset($message['ad_title']) ? $message['ad_title'] : 'не указано'?></a></div>
+	<div class="message-text"><p class="bold">Текст сообщения:</p> <p><?=$message['message_text']?></p></div>
+	</div>
+	<div class="message-manage-btns">
+	    <div class="viewed <?= $message['message_status'] == 1 ? 'inactive' : ''?>" data-messageid="<?=$message['message_id']?>">прочитано</div>
+	    <div class="write-message-btn" data-receiver="<?=$message['message_idUser']?>" data-author="<?=$user_id?>">ответить</div>
+	</div>
+</div>
+<?endforeach?>
+
+
+<div class="create-message">
+    <div class="message-content">
+    <div class="close"><img src="<?=IMG . 'close-icon.png' ?>" alt=""></div>
+
+    <form action="">
+	<textarea name="textmessage" cols="40" rows="7" placeholder="Текст сообщения..."></textarea>
+	
+	<input id="sendMessage" type="submit" value="ОТПРАВИТЬ">
+    </form>
+    </div>
+    </div>
+
+
+
+<!--
+<div class="switcher">
+	<ul>
+		<li><a href="">1</a></li>
+		<li><a href="">2</a></li>
+		<li><a href="">3</a></li>
+		<li><a href="">4</a></li>
+		<li><a href="">5</a></li>
+		<li><a href="">>></a></li>
+	</ul>
+</div>
+-->
+
+<p id="flashMessageAd"></p>
+
+</div>
+</div>

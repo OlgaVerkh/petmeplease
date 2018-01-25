@@ -1,0 +1,62 @@
+<?php
+
+    $user_id = getUserId();
+    
+    $db = getConnect();
+    
+    $ads = mysqli_query($db, '
+        SELECT * FROM ad
+        WHERE ad_user_id = "'.$user_id.'"
+    ');
+    
+    $ads = mysqli_fetch_all($ads, MYSQLI_ASSOC);
+    
+    foreach($ads as $key => $value) {
+        
+        $photos = mysqli_query($db, '
+            SELECT photo_link
+            FROM photo
+            WHERE photo_ad_id = "'.$value['ad_id'].'";
+        ');
+        
+        $photos = mysqli_fetch_all($photos, MYSQLI_ASSOC);
+        $ads[$key]['photos'] = $photos;
+        
+    }
+?>
+
+
+
+
+<input class="give-ad-btn" type="submit" value="ДАТЬ ОБЪЯВЛЕНИЕ">
+
+<?foreach($ads as $key => $ad):?>
+
+<div class="account-ad">
+	<div class="account-ad-img">
+	<img src="../../<?=isset($ad['photos'][0]['photo_link']) ? $ad['photos'][0]['photo_link'] : 'upload/default.png'?>" alt="">
+	</div>
+	<div class="ad-content">
+	<div class="ad-date"><?=date('d-m-Y', strtotime($ad['ad_createDate']))?></div>
+	<div class="ad-name"><a href="<?= SUBDOMAIN?>accountEditAd?ad_id=<?=$ad['ad_id']?>"><?=$ad['ad_title']?></a></div>
+	<div class="ad-text"><?=$ad['ad_text']?></div>
+	</div>
+</div>
+
+<?endforeach?>
+
+
+<!--
+<div class="switcher">
+	<ul>
+		<li><a href="">1</a></li>
+		<li><a href="">2</a></li>
+		<li><a href="">3</a></li>
+		<li><a href="">4</a></li>
+		<li><a href="">5</a></li>
+		<li><a href="">>></a></li>
+	</ul>
+</div>
+-->
+</div>
+</div>

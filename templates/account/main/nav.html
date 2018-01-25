@@ -1,0 +1,44 @@
+<?php
+$db = getConnect();
+$user_id = getUserId();
+
+$query = mysqli_query($db, '
+    SELECT user_name, user_lastname, user_avatar
+    FROM user
+    WHERE user_id = "' . $user_id . '"
+');
+
+$query = mysqli_fetch_assoc($query);
+
+$userMessages = mysqli_query($db, '
+        SELECT message.*, ad.ad_id, ad.ad_title, user.user_name, user.user_lastname, user.user_avatar
+        FROM message
+        LEFT JOIN ad ON message_idAd = ad_id
+        LEFT JOIN user ON message_idUser = user_id
+        WHERE message_receiver_id = "' . $user_id . '"
+        ORDER BY message_status;
+    ');
+    
+    $userMessages = mysqli_fetch_all($userMessages, MYSQLI_ASSOC);
+
+?>
+
+
+<body>
+<div class="account-all-content">
+<div class="account-nav">
+	<div class="user-avatar">
+	<img src="../<?=isset($query['user_avatar']) ? $query['user_avatar'] : 'upload/default.png'?>" alt=""></div>
+	<div class="user-name"><?=$query['user_name']?> <?=$query['user_lastname']?></div>
+	<ul>
+		<li><a href="<?= SUBDOMAIN?>accountProfile/">Мой профиль</a></li>
+		<li><a href="<?= SUBDOMAIN?>accountAds/">Мои объявления</a></li>
+		<?$check = true;?>
+		<?foreach($userMessages as $key => $message):?>
+            <?$message['message_status'] == 0 ? $check = false : $check = true;?>
+		<?endforeach?>
+		<li><a href="<?= SUBDOMAIN?>accountMessages/" class="<?= !$check ? 'colored' : ''?>">Мои сообщения<span class="<?= !$check ? 'newMessage' : ''?>" id="myMessages"></span></a></li>
+		<li><a href="<?= SUBDOMAIN?>exit.php">Выход</a></li>
+	</ul>
+<!--	<div class="logo"><img src="<?=IMG . 'pmp-logo_color.png' ?>" alt=""></div>-->
+</div>
