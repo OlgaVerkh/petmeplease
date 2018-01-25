@@ -51,8 +51,6 @@
 			<?endif;?>
 		</div>
 		
-		<div class="single-ad-price"><?= (bool)($ad['ad_animal_price']) ? $ad['ad_animal_price'] . ' рублей' : 'Цена не установлена' ?></div>
-		
 		<div class="single-ad-text">
 			<h3>Текст объявления</h3>
 			<?=$ad['ad_text']?>
@@ -61,18 +59,57 @@
 	</div>
 	
 	<div class="second-container">
-		
-		
+				
+		<div class="single-ad-price"><?= (bool)($ad['ad_animal_price']) ? '&#x584 ' . $ad['ad_animal_price'] : 'Цена не установлена' ?>
+		</div>
 		
 		<div class="ad-info">
 		<h3>Детали</h3>
-			<div class="ad-date"><?=date('d-m-Y', strtotime($ad['ad_createDate']))?></div>
+		
+			<div class="ad-date"><?=date('d-m-Y', strtotime($ad['ad_createDate']))?>
+			</div>
+			
+		<div class="details-list">
+			<div class="first-column">
+				<div class="det-name">Город:</div>
+				<div class="det-name">Животное:</div>
+				<div class="det-name">Порода:</div>
+				<div class="det-name">Пол:</div>
+				<div class="det-name">Возраст:</div>
+			</div>
+			
+			<div class="second-column">
+				<div>
+					<?=$ad['city_name']?>
+				</div>
+				
+				<div>
+					<?=$ad['kind_name']?>
+				</div>
+				
+				<div>
+					<?=$ad['breed_name']?>
+				</div>
+				
+				<div>
+					<?=($ad['ad_animal_sex'] == "1") ? 'мальчик' : 'девочка'?>
+				</div>
+				
+				<div>
+					<?=$ad['ad_animal_age']?>
+				</div>
+			</div>
+	</div>
+	</div>		
+			
+<!--
 			<div class="ad-city"><span class="bold">Город: </span><?=$ad['city_name']?></div>
 			<div class="ad-animal"><span class="bold">Животное: </span><?=$ad['kind_name']?></div>
 			<div class="ad-animal-breed"><span class="bold">Порода: </span><?=$ad['breed_name']?></div>
 			<div class="ad-animal-sex"><span class="bold">Пол: </span><?= ($ad['ad_animal_sex'] == "1") ? 'мальчик' : 'девочка'?></div>
 			<div class="ad-animal-age"><span class="bold">Возраст: </span><?=$ad['ad_animal_age']?></div>
-		</div>
+-->
+	
 		
 	<div class="ad-author <?=($ad['ad_user_id'] == $user_id) ? 'invisible' : ''?>">
 		<h3>Автор объявления</h3>
@@ -80,14 +117,13 @@
 		
 		<div class="ad-author-name"><?=$user['user_name']?> <?=$user['user_lastname']?></div>
 		<div class="ad-author-telephone"><?=$user['user_tel']?></div>
-		<input class="write-message-btn" type="submit" value="написать сообщение">
+		<input id="write-to-author" class="write-message-btn" type="submit" value="написать сообщение">
 	</div>	
-		
-		
-	</div>
+	
+	
 </div>
-
-
+	
+</div>
 
 
 
@@ -146,7 +182,6 @@
 	</div>
 -->
 
-</div>
 
 
     <div class="create-message">

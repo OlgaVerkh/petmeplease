@@ -28,7 +28,7 @@
 
 
 
-<input class="give-ad-btn" type="submit" value="ДАТЬ ОБЪЯВЛЕНИЕ">
+<input class="give-ad-btn-account" type="submit" value="ДАТЬ ОБЪЯВЛЕНИЕ">
 
 <?foreach($ads as $key => $ad):?>
 
@@ -36,10 +36,19 @@
 	<div class="account-ad-img">
 	<img src="../../<?=isset($ad['photos'][0]['photo_link']) ? $ad['photos'][0]['photo_link'] : 'upload/default.png'?>" alt="">
 	</div>
+	
 	<div class="ad-content">
-	<div class="ad-date"><?=date('d-m-Y', strtotime($ad['ad_createDate']))?></div>
-	<div class="ad-name"><a href="<?= SUBDOMAIN?>accountEditAd?ad_id=<?=$ad['ad_id']?>"><?=$ad['ad_title']?></a></div>
-	<div class="ad-text"><?=$ad['ad_text']?></div>
+	<div class="ad-date">
+	<?=date('d-m-Y', strtotime($ad['ad_createDate']))?>
+	</div>
+	
+	<div class="ad-name">
+	<a href="<?= SUBDOMAIN?>accountEditAd?ad_id=<?=$ad['ad_id']?>"><?=$ad['ad_title']?></a>
+	</div>
+	
+	<div class="ad-text">
+	<?=$ad['ad_text']?>
+	</div>
 	</div>
 </div>
 

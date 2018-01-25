@@ -1,3 +1,18 @@
+//Плагин Карусель
+
+$(document).ready(function(){
+  $('.owl-carousel').owlCarousel({
+	  	dots: true,
+	  	pagination: true,
+	  	items: 1,
+	  	autoHeight: true,
+	  	navText: ['', '']
+  });	
+});
+
+
+
+
 //Обрабатываем событие по клику на кнопку добавить объявление
 $('.give-ad-btn').on('click', function(e) {
    $.ajax({
@@ -40,14 +55,7 @@ setInterval(function() {
     });
 }, 1000 * 20);
 
-$(document).ready(function(){
-  $('.owl-carousel').owlCarousel({
-	  	dots: true,
-	  	pagination: true,
-	  	items: 1,
-	  	autoHeight: true
-  });	
-});
+
 
 
 
