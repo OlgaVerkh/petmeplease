@@ -22,8 +22,7 @@
         SELECT * FROM ad
         LEFT JOIN city ON city_id = ad_city_id
         WHERE ad_createDate > (NOW() - INTERVAL 7 DAY)
-        ORDER BY ad_createDate DESC
-        LIMIT 4;
+    	LIMIT 4;
     ');
 
     $ads = mysqli_fetch_all($ads, MYSQLI_ASSOC);

@@ -268,7 +268,7 @@ footer img {
 }
 
 footer p {
-	color: #73a08c;
+	color: #38504D;
 	line-height: 1.5;
 	margin-left: 70px;
 }
@@ -902,12 +902,15 @@ input.give-ad-btn-account {
     transition: all 0.5s ease-in;
 }
 
-/*Отдельное объявление*/
+/*Личный кабинет: отдельное объявление*/
+
+.bold {
+	font-weight: bold;
+}
 
 .single-ad-edit {
 	width: 100%;
     min-height: 500px;
-	display: flex;
 	margin: 30px 0;
 	padding: 15px;
 	background-color: #fff;
@@ -916,22 +919,20 @@ input.give-ad-btn-account {
 	box-shadow: 0 10px 10px rgba(0,0,0,.1);
 }
 
-.account-first-column {
+.single-ad-edit>div.first-row {
+	display: flex;
+	justify-content: space-between;
+}
+
+
+.single-ad-img>div {
 	width: 50%;
+	margin: 30px 0;
 }
-
-.single-ad-img>div.owl-carousel img {
-	max-width: 90%;
-	margin: 0 auto;
-	border-radius: 5px;
-}
-
 
 /*
-.single-ad-img.owl-carousel>div {
-	width: 50%;
-	margin: 0 auto;
-	border-radius: 5px;
+.single-ad-img img {
+	max-width: 30%;
 }
 */
 
@@ -995,7 +996,6 @@ input.give-ad-btn-account {
 
 
 
-
 /*Сообщения*/
 
 .account-ad .account-ad-img, .message-author {
@@ -1005,6 +1005,8 @@ input.give-ad-btn-account {
 .account-message {
     display: flex;
     width: 100%;
+	border-radius: 5px;
+	box-shadow: 0 10px 10px rgba(0,0,0,.1);
 }
 
 .message-author {
@@ -1035,7 +1037,7 @@ a.colored {
 
 .message-ad-name a {
 	text-decoration: none;
-	color: #73a08c;
+	color: #38504D;
 	font-weight: bold;
 }
 
@@ -1086,7 +1088,7 @@ a.colored {
 }
 
 .message-manage-btns .write-message-btn {
-    background-color: #73a08c;
+    background-color: #c4603c;
     border-radius: 15px;
     color: #fffdf3;
     padding: 10px;
@@ -1106,50 +1108,87 @@ span.newMessage {
 
 /*Форма авторизации*/
 
-.authorization-form, .registration-form {
-	width: 40%;
-	min-height: 600px;
-	margin: 50px auto;
-	padding: 70px 0;
-	background-color: #fffdf3;
-	color: #73a08c;
+.sign-in, .sign-up {
+	width: 80%;
 	display: flex;
-	flex-direction: column;
-	align-items: center;
+	margin: 100px auto;
+	box-shadow: 0 20px 20px rgba(0,0,0,.1);
 }
 
-.authorization-form h3 {
-	margin: 20px 0;
+.sign-in h3, .sign-up h3 {
+	font-size: 250%;
 }
 
- .authorization-form form, .registration-form form {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	width: 100%;
-}
-
-.authorization-form a {
-	text-decoration: none;
-	font-weight: bold;
-	color: #c4603c;
-	margin: 20px 0;
-}
-
-.authorization-form form input, .registration-form form input {
+.sign-in-photo {
 	width: 50%;
+	background: url(../img/sign-in.jpg) no-repeat;
+	padding: 60px 90px;
+}
+
+.sign-up-photo {
+	width: 50%;
+	background: url(../img/sign-up.jpg) no-repeat;
+	padding: 60px 90px;
+}
+
+.sign-in-photo>h3, .sign-up-photo>h3 {
+	font-size: 350%;
+	margin: 30px 0 10px 0;
+}
+
+.sign-in-photo p.welcome, .sign-up-photo p.welcome {
+	font-size: 150%;
+}
+
+.sign-in-photo>img, .sign-up-photo>img {
+	max-width: 90%;
+}
+
+.sign-in-form, .sign-up-form {
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	background-color: #fff;
+	color: #38504D;
+	padding: 60px 90px;
+}
+
+.enterForm, .regForm {
+	display: flex;
+	flex-direction: column;
+	padding: 40px 0;
+}
+
+.enterForm input, .regForm input {
 	margin: 10px 0;
+	padding: 5px;
 }
 
-.authorization-form .choose-btn {
-	margin-left: 0;
-	width: 30%;
+.enterForm input.lastInput {
+	margin-bottom: 40px;
 }
 
-/*Форма регистрации*/
+.sign-in a {
+	text-decoration: none;
+	color: #c4603c;
+	margin: 10px 0;
+	font-weight: bold;
+}
 
-.registration-form h3 {
-	margin: 20px 0;
+.sign-up a {
+	color: #38504D;
+}
+
+.enterForm input.choose-btn, .regForm input.choose-btn {
+	width: 50%;
+	align-self: flex-end;
+	padding: 10px 0;
+}
+
+.regForm input.choose-btn {
+	width: 60%;
+	align-self: flex-end;
+	padding: 10px;
 }
 
 .agree-mark {
@@ -1159,8 +1198,8 @@ span.newMessage {
 }
 
 .last-label {
-	width: 22px;
-	height: 22px;
+	width: 25px;
+	height: 25px;
 	display: flex;
 	justify-content: space-between;
 	position: relative;
@@ -1170,32 +1209,29 @@ span.newMessage {
 
 
 input[type="checkbox"] + span {
-	width: 22px;
-	height: 22px;
+	width: 20px;
+	height: 20px;
  	position: absolute;
 	display: block;
  	left: 0; 
 	top: 0;
  	width: 100%; 
 	height: 100%;
- 	background-color: #fffdf3;
-	border: 1px solid #73a08c;
+ 	background-color: #fff;
+	border: 1px solid #319FA8;
  	cursor: pointer; 
 }
 
 input[type="checkbox"]:checked + span::before  	{
  	content: '\2714';
 	display: block;
+	padding: 2px;
 	
 }
 
 p.agree {
 	padding-left: 20px;
 	font-size: 90%;
-}
-
-p.agree a {
-	color: #73a08c;
 }
 
 /*Форма создания объявления*/
@@ -1245,9 +1281,9 @@ p.visible {
 }
 
 textarea {
-	border: 2px solid #73a08c;
+	border: 2px solid #319FA8;
 	border-radius: 15px;
-	background-color: #fffdf3;
+	background-color: #fff;
 	width: 100%;
 	padding: 10px;
 	font-family: 'inglobal';
@@ -1288,17 +1324,18 @@ textarea {
 .message-content {
     width: 40%;
     margin: 100px auto;
-    background-color: #fffdf3;
+    background-color: #fff;
     padding: 30px;
     position: relative;
     z-index: 999;
+	border-radius: 5px;
 }
 
 .close {
     position: absolute;
 	z-index: 1000;
 	top: 15px;
-	left: 95%;
+	left: 93%;
 	width: 20%;
 }
 
@@ -1334,7 +1371,7 @@ textarea {
 
 #sendMessage {
     display: block;
-    margin: 0 auto;
+    margin: 10px auto;
 }
  
 	

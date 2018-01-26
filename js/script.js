@@ -5,7 +5,6 @@ $(document).ready(function(){
 	  	dots: true,
 	  	pagination: true,
 	  	items: 1,
-	  	autoHeight: true,
 	  	navText: ['', '']
   });
 });
@@ -66,8 +65,6 @@ window.addEventListener('scroll', function(e) {
     // console.log(scrolled + ' scrolled');
     // console.log(laBounding.height + laBounding.y - la.offsetTop  + ' laOffset');
     if(laBounding.height + laBounding.y - la.offsetTop <= 0) {
-        console.log('loading new content');
-
         $.ajax({
             method: 'POST',
             url: '../scroll.php',
@@ -76,16 +73,32 @@ window.addEventListener('scroll', function(e) {
             inProgress = true;
             }
             }).done(function(data) {
-            console.log(data);
-            if (data.length > 0) {
-            $.each(data, function(index, data){
-            //$(".latest-ads").append("<div class="latest-ad"><div class="price">" + data.ad_animal_price + "</div><div class="flex-container"><div class="latest-ad-img"><img src="" alt=""></div><div class="flex-item"><h3><a href="">" + data.ad_title + "</a></h3><span class="ad-date">" + data.ad_createDate + "</span><p class="ad-city">" + data.ad_city_id + "</p><p class="ad-text">" + data.ad_text + "</p></div></div></div>");
-            });
-            inProgress = false;
-            startFrom += 10;
-            }});
-        }
+			data = JSON.parse(data);		
+			console.log(data);
+			for(var i = 0; i < data.length; i++) {
+				$('.latest-ads').append("<div class='latest-ad'><div class='price'>" + data[i].ad_animal_price + "</div><div class='flex-container'><div class='latest-ad-img'><img src=" + data[i].photo + "alt=''></div><div class='flex-item'><h3><a href=''>" + data[i].ad_title + "</a></h3><span class='ad-date>" + data[i].ad_createDate + "</span><p class='ad-city'>" + data[i].city_name + "</p><p class='ad-text'>" + data[i].ad_text + "</p></div></div></div>")
+
+			}			
+			
+		});
+	};
+	
 });
+	
+//			
+//            if (data.length > 0) {
+//				 $.each(data, function(index, data){
+//            $(".latest-ads").append("<p>" + data.ad_animal_price + "</p>");
+//            });
+//				
+//            $.each(data, function(index, data){
+//            $(".latest-ads").append("<div class='latest-ad'><div class='price'>" + data.ad_animal_price + "</div><div class='flex-container'><div class='latest-ad-img'><img src=" + data.photo + "alt=''></div><div class='flex-item'><h3><a href=''>" + data.ad_title + "</a></h3><span class='ad-date>" + data.ad_createDate + "</span><p class='ad-city'>" + data.city_name + "</p><p class='ad-text'>" + data.ad_text + "</p></div></div></div>");
+//            });
+//            inProgress = false;
+//            startFrom += 10;
+//            }});
+//        }
+//});
 
 
 
