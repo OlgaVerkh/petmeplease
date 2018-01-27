@@ -625,12 +625,18 @@ input.search-btn {
 
 .single-ad-text {
 	padding: 30px;
+    margin-bottom: 30px;
+}
+
+.single-ad-photo {
+    width: 80%;
+    margin: 0 auto;
 }
 
 /*Стили для карусели (блок с фото)*/
 
 .owl-carousel>div {
-	width: 90%;
+	width: 100%;
 	margin: 0 auto;
 	border-radius: 5px;
 }
@@ -669,7 +675,7 @@ input.search-btn {
 	padding-left: 12%;
 	color: #38504D;
 	box-shadow:  10px 10px 6px -6px rgba(0, 0, 0, 0.25);
-	padding-top: 30px;
+	padding-top: 20px;
 }
 
 .ad-info {
@@ -707,7 +713,7 @@ input.search-btn {
 .ad-author {
 	align-self: center;
 	text-align: center;
-	
+	margin-bottom: 30px;
 }
 
 .ad-author img{
@@ -984,7 +990,7 @@ input.give-ad-btn-account {
 
 .single-ad-img>div {
 	width: 100%;
-	margin: 30px 0;
+	margin: 30px;
 }
 
 .single-ad-img img {
