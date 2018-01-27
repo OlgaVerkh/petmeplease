@@ -614,7 +614,7 @@ input.search-btn {
 	display: flex;
 	flex-direction: column;
 	background: linear-gradient(45deg, #319FA8, #7EC77E);
-	z-index: 1000;
+	z-index: 100;
 	color: #fff;
 	box-shadow:  10px 10px 6px -6px rgba(0, 0, 0, 0.25);
 }
@@ -663,7 +663,7 @@ input.search-btn {
 	display: flex;
 	flex-direction: column;
 	border-radius: 5px;
-	z-index: 999;
+	z-index: 99;
 	position: absolute;
 	left: 50%;
 	padding-left: 12%;
@@ -886,6 +886,7 @@ input.give-ad-btn-account {
 	color: #38504D;
 	margin: 30px 0;
 	padding: 20px;
+    position: relative;
 }
 
 .account-ad-img {
@@ -917,6 +918,13 @@ input.give-ad-btn-account {
     transition: all 0.5s ease-in;
 }
 
+.ad-manage-icons {
+    display: flex;
+    position: absolute;
+    right: 0;
+}
+
+
 /*Личный кабинет: отдельное объявление*/
 
 .bold {
@@ -937,23 +945,65 @@ input.give-ad-btn-account {
 .single-ad-edit>div.first-row {
 	display: flex;
 	justify-content: space-between;
+    padding: 20px;
 }
 
+.single-ad-edit>div.second-row {
+    display: flex;
+}
+
+.single-ad-edit>div.third-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.single-ad-img {
+    width: 50%;
+}
+
+.ad-info {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.ad-details {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+}
+
+.ad-det-first-column, .ad-det-second-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.ad-det-first-column div, .ad-det-second-column div {
+    margin: 5px 0;
+}
 
 .single-ad-img>div {
-	width: 50%;
+	width: 100%;
 	margin: 30px 0;
 }
 
-/*
 .single-ad-img img {
-	max-width: 30%;
+	max-width: 80%;
 }
-*/
 
-.single-ad-edit .manage-icons {
+.single-ad-edit .ad-text {
+    padding-top: 50px;
+}
+
+.text-and-icons {
+    display: flex;
+    flex-direction: column;
+}
+
+.text-and-icons div.manage-icons {
     align-self: flex-end;
-    padding: 20px;
+    margin-top: 70px;
+    display: flex;
 }
 
 .edit-form {
@@ -963,10 +1013,9 @@ input.give-ad-btn-account {
 .edit-form-content {
     width: 50%;
     margin: 50px auto;
-    background-color: #fffdf3;
+    background-color: #fff;
     padding: 30px;
     position: relative;
-    z-index: 999;
 }
 
 .edit-form-content label {
@@ -977,6 +1026,20 @@ input.give-ad-btn-account {
     width: 100%;
 }
 
+.edit-form-content div.file-upload {
+    width: 40%;
+}
+
+.edit-form-content div.file-upload>label {
+    background: #319FA8;
+}
+
+.edit-form-content input#publish-btn {
+    width: 30%;
+    display:  block;
+    margin: 0 auto;
+}
+
 .edit-form-content-photos {
     display: flex;
     flex-flow: column;
@@ -985,7 +1048,6 @@ input.give-ad-btn-account {
 }
 
 .edit-form-content-photos img {
-    
     max-width: 25%;
 }
 
@@ -997,7 +1059,11 @@ input.give-ad-btn-account {
 .edit-form-content-photos a {
     position: absolute;
     top: 25%;
-    right: -20px;
+    right: 0;
+    text-decoration: none;
+    color: #c4603c;
+    font-weight: bold;
+    font-size: 120%;
 }
 
 .edit, .delete {
@@ -1269,7 +1335,7 @@ p.visible {
 }
 
 .create {
-	background-color: #fffdf3;
+	background-color: #fff;
 	margin-top: 20px;
 	padding: 50px;
 }
@@ -1277,6 +1343,21 @@ p.visible {
 .create-ad input {
 	width: 100%;
 }
+
+.create-ad div.file-upload {
+    width: 30%;
+}
+
+.create-ad div.file-upload>label {
+    background: #319FA8;
+}
+
+.create-ad input#publish-btn {
+    width: 30%;
+    display:  block;
+    margin: 0 auto;
+}
+
 
 .create-ad select {
 	padding: 5px 0;
@@ -1334,6 +1415,7 @@ textarea {
     left: 0;
     background-color: rgba(0, 0, 0, 0.7);
     overflow: auto;
+    z-index: 102;
 }
 
 .message-content {
@@ -1342,7 +1424,6 @@ textarea {
     background-color: #fff;
     padding: 30px;
     position: relative;
-    z-index: 999;
 	border-radius: 5px;
 }
 

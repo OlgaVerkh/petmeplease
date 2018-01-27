@@ -6,6 +6,36 @@ $(".close").on('click', function(e) {
     $(".edit-form").removeClass('visible');
 });
 
+$("#publish-btn").on('click', function(e) {
+    $(".edit-form").removeClass('visible');
+});
+
+//Подключение пород
+$('select[name="kind"]').on('change', function(e) {
+    var val = $(this).val(),
+        query = '?kind=' + val;
+    $.ajax({
+        method: 'get',
+        url: '../getbreed.php' + query,
+        success: function(data, status) {
+            var data = JSON.parse(data);
+            $select = $('select[name="breed"]');
+            $('select[name="breed"] option').remove();
+            data.forEach( function(v) {
+                var option = '<option value="'+v.breed_id+'">'+v.breed_name+'</option>';
+                $select.append(option);
+            });
+            
+            
+        },
+        error: function(err) {
+            console.log(err);
+        }
+    });
+    
+});
+
+
 
 //Удаление фотографий
 $('.edit-form-content-photos a').each( function() {
@@ -30,8 +60,6 @@ $('.edit-form-content-photos a').each( function() {
         
     });
 });
-
-
 
 $form = $('.addAdForm');
 

@@ -5,9 +5,9 @@ if(checkUser()) {
     $title = 'Мои объявления';
     $meta = ['charset' => 'utf-8'];
     $css = ['style.css'];
-    $js = ['script.js'];
+    $js = ['script.js', 'editAd.js', 'deleteAd.js'];
 } else {
-    header('Location: /enter/enter');
+    header('Location: /enter');
 }
 
 ?>

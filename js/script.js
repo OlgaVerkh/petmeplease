@@ -39,7 +39,7 @@ setInterval(function() {
         method: 'GET',
         url: '../checkMessage.php',
         success: function(data, status) {
-//            data = JSON.parse(data);
+            data = JSON.parse(data);
             if(data['status'] == true) {
             $('#myMessages').addClass('newMessage');
             $('#myMessages').parent().addClass('colored');
@@ -52,7 +52,7 @@ setInterval(function() {
             console.log(err);
         }
     });
-}, 1000 * 20);
+}, 1000 * 10);
 
  // функция распознавания лиц
 //    function faceDetectionJquery(options, callback) {

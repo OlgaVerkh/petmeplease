@@ -21,8 +21,6 @@
     ");
     $allBreeds = mysqli_fetch_all($b, MYSQLI_ASSOC);
     
-    $db = getConnect();
-    
     $ads = mysqli_query($db, '
         SELECT * FROM ad
         LEFT JOIN city ON city_id = ad_city_id
@@ -127,13 +125,6 @@
 		</select>
 		</div>
 		
-		</div>
-		<div class="select-form-row2">
-		<label for="">Сортировать по</label>
-		<select class="sort" name="sort" id="">
-			<option value="1">Дате добавления</option>
-			<option value="2">Цене</option>
-		</select>
 		</div>
 
 		<input class="search-btn" type="submit" value="ПОКАЗАТЬ">
