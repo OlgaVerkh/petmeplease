@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Янв 25 2018 г., 14:34
+-- Время создания: Янв 27 2018 г., 19:33
 -- Версия сервера: 10.1.26-MariaDB
--- Версия PHP: 7.1.8
+-- Версия PHP: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -53,7 +53,7 @@ INSERT INTO `ad` (`ad_id`, `ad_title`, `ad_createDate`, `ad_text`, `ad_animal_ag
 (36, 'Продаю морскую свинку', '2018-01-22 09:24:42', 'Продам морскую свинку. Милый пушистый зверек.\r\nКлетка и прочие аксессуары в стоимость не входят.', '3 месяца', '1', '1000', 6, 60, 6, 2, 14),
 (37, 'Отдам в хорошие руки черепаху', '2018-01-22 09:28:41', 'Отдаю свою черепашку &quot;Молнию&quot;. Чудесное создание! Только в ласковые и заботливые руки!', '5 лет', '2', '', 5, 58, 4, 3, 12),
 (38, 'Продаю щенка немецкой овчарки', '2018-01-22 09:34:42', 'Продаю щенка немецкой овчарки. Игривая симпатичная девочка. Все документы в наличии, собака привита.', '3 месяца', '2', '3000', 1, 4, 4, 2, 7),
-(40, 'Продам попугая', '2018-01-22 11:16:30', 'Продаю попугая с клеткой. Очень красивая и изящная птица', '1 год', '1', '2000', 3, 33, 7, 2, 3),
+(40, 'Продам попугаев', '2018-01-27 17:55:34', 'Продаю двух попугаев с клеткой. Очень красивые и изящные птицы', '6 месяцев', '1', '3000', 3, 33, 7, 2, 3),
 (41, 'Куплю сиамскую кошку!', '2018-01-22 11:23:59', 'Очень хочу купить сиамскую кошечку! Жду ваших предложений :)', 'до 3 лет', '2', '', 2, 19, 7, 1, 7);
 
 -- --------------------------------------------------------
@@ -219,7 +219,8 @@ INSERT INTO `connect` (`session`, `token`, `user_id`, `expire`) VALUES
 ('0tf0ol14lq1rppdlfkvfce0q7c', 'cm7xtg23xg3y8dgwco7wqjehq96i3i0e', 6, '0000-00-00 00:00:00'),
 ('vm57rtkjjgufqdq1h0ic4866dk', 'ts0wc2f2nnydgydjeen4hk87cf6j8wzj', 6, '0000-00-00 00:00:00'),
 ('q1cnv6mdp0eh34uifi2aakupc8', 'cen4txtb3sd5wpoct93gkospv5cvy5y3', 7, '0000-00-00 00:00:00'),
-('t58bghqum5lj3kngn1r9056fik', 'pe1syvdlcjjt6gxwt094ujb9sd5m9hqc', 6, '0000-00-00 00:00:00');
+('t58bghqum5lj3kngn1r9056fik', 'pe1syvdlcjjt6gxwt094ujb9sd5m9hqc', 6, '0000-00-00 00:00:00'),
+('4slaekn49tqan0350haeiqu31i', 'cyk922mzr7ba6wr5rl1928zyp4yo3885', 6, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -281,9 +282,10 @@ INSERT INTO `message` (`message_id`, `message_createDate`, `message_text`, `mess
 (19, '2018-01-22 09:26:46', 'bgsvsrgreg', 5, NULL, 1, 4),
 (20, '2018-01-21 18:45:09', 'Hello', 4, 33, 1, 5),
 (21, '2018-01-22 09:26:47', 'Hello you to! :D', 5, NULL, 1, 4),
-(41, '2018-01-22 12:47:11', 'Привет! Хочу такого щеночка :)', 7, 38, 0, 4),
+(41, '2018-01-27 13:11:34', 'Привет! Хочу такого щеночка :)', 7, 38, 1, 4),
 (43, '2018-01-22 12:51:45', 'Привет! Хотела бы купить у тебя эту замечательную зверушку :)', 7, 36, 1, 6),
-(45, '2018-01-24 11:43:50', 'Привет! Это круто) когда и где встретимся?', 6, NULL, 1, 7);
+(45, '2018-01-24 11:43:50', 'Привет! Это круто) когда и где встретимся?', 6, NULL, 1, 7),
+(49, '2018-01-27 16:05:49', 'Привет! У меня есть знакомые, у которых как раз родились замечательные сиамские котята, 4 штуки. Интересует?) ', 4, 41, 1, 7);
 
 -- --------------------------------------------------------
 
@@ -306,15 +308,15 @@ INSERT INTO `photo` (`photo_id`, `photo_link`, `photo_ad_id`) VALUES
 (15, 'upload/5/33/labrador2.jpg', 33),
 (16, 'upload/5/33/labrador3.jpg', 33),
 (17, 'upload/6/34/kitten.jpg', 34),
-(19, 'upload/6/36/Guinea pig.jpg', 36),
 (20, 'upload/4/37/turtle.jpg', 37),
 (21, 'upload/4/37/turtle2.jpg', 37),
 (22, 'upload/4/38/shephard.jpg', 38),
 (23, 'upload/4/38/shephard2.jpg', 38),
 (24, 'upload/4/38/shephard3.jpg', 38),
-(27, 'upload/7/40/parrit.jpg', 40),
 (28, 'upload/7/40/parrot2.jpg', 40),
-(29, 'upload/7/41/Siamskaya-koshka.jpg', 41);
+(29, 'upload/7/41/Siamskaya-koshka.jpg', 41),
+(30, 'upload/7/40/parrot.jpg', 40),
+(37, 'upload/6/36/guinea_pig.jpg', 36);
 
 -- --------------------------------------------------------
 
@@ -362,7 +364,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`user_id`, `user_email`, `user_pass`, `user_name`, `user_lastname`, `user_tel`, `user_avatar`) VALUES
 (4, 'olga.verkholantceva@mail.ru', '$2y$10$GL1Zb9CYfWpUzPB5rcnTAO0Q/VE7KTz402bKQsi0L72cUQZGMs8si', 'Ольга', 'Верхоланцева', '+7 911 748 74 21', 'upload/4/_DSC1007.jpg'),
 (5, 'olafre@mail.ru', '$2y$10$yvL2jI903OepDlliQXoqHur8hDi9ONCO7tmV4CMsHJEqj0ZBjqNVm', 'Роман', 'Петров', '+7 924 456 87 54', 'upload/5/DSC_0035.JPG'),
-(6, 'ivanov@mail.ru', '$2y$10$AYh41u7dnrKrHfexN9FTle.vWyOw5nzTxD3f3BcrRN/eBEAKn/sa.', 'оля', 'верх', '12353453', 'upload/6/35.JPG'),
+(6, 'ivanov@mail.ru', '$2y$10$AYh41u7dnrKrHfexN9FTle.vWyOw5nzTxD3f3BcrRN/eBEAKn/sa.', 'Михаил', 'Иванов', '89345673215', 'upload/6/ivanov.jpg'),
 (7, 'masha@mail.ru', '$2y$10$HSlcEx5RIGMqeOVLMYW4/uFK2JJAPD50bdn7RvQzMZKjNHbr6PydC', 'Мария', 'Сидорова', '+7 911 123 65 78', 'upload/7/girl.jpg');
 
 --
@@ -436,41 +438,49 @@ ALTER TABLE `user`
 --
 ALTER TABLE `ad`
   MODIFY `ad_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+
 --
 -- AUTO_INCREMENT для таблицы `breed`
 --
 ALTER TABLE `breed`
   MODIFY `breed_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+
 --
 -- AUTO_INCREMENT для таблицы `city`
 --
 ALTER TABLE `city`
   MODIFY `city_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
 --
 -- AUTO_INCREMENT для таблицы `kind`
 --
 ALTER TABLE `kind`
   MODIFY `kind_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT для таблицы `message`
 --
 ALTER TABLE `message`
-  MODIFY `message_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `message_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+
 --
 -- AUTO_INCREMENT для таблицы `photo`
 --
 ALTER TABLE `photo`
-  MODIFY `photo_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `photo_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
 --
 -- AUTO_INCREMENT для таблицы `section`
 --
 ALTER TABLE `section`
   MODIFY `section_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
   MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --
