@@ -1,0 +1,115 @@
+	<?php
+   
+    $db = getConnect();
+    $c = mysqli_query($db, "
+	SELECT * FROM city
+    ");
+    $allCities = mysqli_fetch_all($c, MYSQLI_ASSOC);
+    
+    $s = mysqli_query($db, "
+	SELECT * FROM section
+    ");
+    $allSections = mysqli_fetch_all($s, MYSQLI_ASSOC);
+    
+    $k = mysqli_query($db, "
+	SELECT * FROM kind
+    ");
+    $allKinds = mysqli_fetch_all($k, MYSQLI_ASSOC);
+    
+    $b = mysqli_query($db, "
+    SELECT * FROM breed WHERE breed_kind_id = 1
+    ");
+    $allBreeds = mysqli_fetch_all($b, MYSQLI_ASSOC);
+    
+    $user_id = getUserId();
+    $check = checkUserProfile($user_id);
+    
+?>
+
+
+<div class="create create-ad">
+<p class="<?= $check ? 'invisible' : 'visible'?>">Перед подачей объявления заполните контактную информацию в разделе "Мой профиль"</p>
+<form class="addAdForm <?= $check ? '' : 'disabled'?>" action="" method="post">
+    <fieldset <?= $check ? '' : 'disabled'?>>
+        
+	<label class="req" for="">Заголовок объявления</label>
+	<input type="text" name="adTitle">
+	
+	<label class="req" for="">Тип объявления</label>
+		<select name="section" id="">
+			<?foreach($allSections as $section):?>
+		        <option value="<?=$section['section_id']?>">
+		            <?=$section['section_name']?>
+		        </option>
+              <?endforeach?>  
+		</select>
+	
+	<label class="req" for="">Город</label>
+		<select name="city" id="">
+			<?foreach($allCities as $city):?>
+		        <option value="<?=$city['city_id']?>">
+		            <?=$city['city_name']?>
+		        </option>
+              <?endforeach?>
+		</select>
+	
+	<label class="req" for="">Животное</label>
+		<select name="kind" id="">
+			<?foreach($allKinds as $kind):?>
+		        <option value="<?=$kind['kind_id']?>">
+		            <?=$kind['kind_name']?>
+		        </option>
+              <?endforeach?>
+		</select>
+	
+	<div class="create-ad-flex-container">
+	<div class="create-ad-flex-item">
+	<label class="req" for="">Порода</label>
+		<select name="breed" id="">
+			<?foreach($allBreeds as $breed):?>
+		        <option value="<?=$breed['breed_id']?>">
+		            <?=$breed['breed_name']?>
+		        </option>
+              <?endforeach?>
+		</select>
+	
+	
+	<label class="req" for="">Возраст</label>
+	<input type="text" name="animalAge">
+	</div>
+	
+	<div class="create-ad-flex-item">
+	<label class="req" for="">Пол</label>
+	<select name="sex" id="">
+	    <option value="1">мальчик</option>
+	    <option value="2">девочка</option>
+	</select>
+	
+	
+	<label for="">Цена</label>
+	<input type="text" name="animalPrice">
+	</div>
+	</div>
+	
+	<label class="req" for="">Текст объявления</label>
+	<textarea name="comment" cols="40" rows="7" name="adText"></textarea>
+		
+	<div class="file-upload">
+	    <label for="file_upload">Загрузить фото</label>
+	    <input type="file" name="file_upload[]" id="file_upload" accept="image/jpeg, image/jpg, image/png" multiple>
+	    </div>
+	
+	<input id="publish-btn" type="submit" value="ОПУБЛИКОВАТЬ">
+</fieldset>
+	
+	
+</form>
+
+<p id="flashMessageAd"></p>
+
+</div>
+
+
+
+</div>
+</div>

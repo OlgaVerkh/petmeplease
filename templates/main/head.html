@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<?foreach($meta as $name => $val):?>
+    <meta <?=$name.'="'.$val.'"'?> />
+    <?endforeach?>
+    <title><?= $title ?></title>
+    <?foreach($css as $file):?>
+    <link rel="stylesheet" href="<?=CSS . 'cssreset.css' ?>"/>
+    <link rel="stylesheet" href="<?=CSS . $file ?>"/>
+    <script type="text/javascript" src="<?=JS . 'jquery-3.2.1.min.js' ?>"></script>
+    <?endforeach?>
+</head>

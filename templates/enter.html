@@ -1,0 +1,25 @@
+<div class="sign-in">
+	<div class="sign-in-photo">
+	<p class="welcome">Добро пожаловать!</p>
+		<h3>petmeplease</h3>
+	<p>объявления о домашних животных</p>
+	</div>
+	
+	<div class="sign-in-form">
+	<h3>Вход</h3>
+	
+	<p>Нет аккаунта?</p>
+	<a href="<?= SUBDOMAIN?>registration/">Зарегистрируйтесь</a>
+	
+	<form name="enterForm" action="../login.php" method="post" class="enterForm">
+		<input type="text" name="email" placeholder="Email">
+		<input class="lastInput" type="password" name="pass" placeholder="пароль">
+
+		<a href="">Забыли пароль?</a>
+
+		<input class="choose-btn" type="submit" value="ВОЙТИ">
+	</form>
+	</div>
+	
+	<p id="flashMessage"></p>
+</div>

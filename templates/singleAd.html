@@ -1,0 +1,203 @@
+<?php
+    $db = getConnect();
+    $ad_id = (int)$_GET['ad_id'];
+    $user_id = getUserId();
+    
+      $ads = mysqli_query($db, '
+        SELECT * FROM ad
+        LEFT JOIN city ON city_id = ad_city_id
+        LEFT JOIN kind ON kind_id = ad_animal_kind_id
+        LEFT JOIN breed ON breed_id = ad_animal_breed_id
+        WHERE ad_id = "'.$ad_id.'";
+    ');
+    
+    $ad = mysqli_fetch_assoc($ads);   
+            
+    $photos = mysqli_query($db, '
+        SELECT photo_link
+        FROM photo
+        WHERE photo_ad_id = "'.$ad_id.'";
+    ');
+        
+        $photos = mysqli_fetch_all($photos, MYSQLI_ASSOC);
+
+   
+    $user = mysqli_query($db, '
+        SELECT ad.ad_id, user.user_id, user.user_name, user.user_lastname, user.user_tel, user.user_avatar
+        FROM ad
+        LEFT JOIN user ON user_id = ad_user_id
+        WHERE ad_id = "'.$ad_id.'";
+    ');
+    
+    $user = mysqli_fetch_assoc($user);
+
+?>
+
+<div class="single">
+	<div class="first-container">
+		<h2><?=$ad['ad_title']?></h2>
+		
+		<div class="single-ad-img">
+			<?if(!isset($photos[0]['photo_link'])):?>
+			    <img src="upload/default.png" alt="">
+			    <?else:?>
+			    <div class="owl-carousel owl-theme">
+			    <?foreach($photos as $key => $photo):?>
+			        	<div>
+			        	<img src="<?=$photo['photo_link']?>" alt="">
+			        	</div>
+			        <?endforeach;?>
+			        </div>
+			<?endif;?>
+		</div>
+		
+		<div class="single-ad-text">
+			<h3>Текст объявления</h3>
+			<?=$ad['ad_text']?>
+		</div>
+		
+	</div>
+	
+	<div class="second-container">
+				
+		<div class="single-ad-price"><?= (bool)($ad['ad_animal_price']) ? '&#x584 ' . $ad['ad_animal_price'] : 'Цена не установлена' ?>
+		</div>
+		
+		<div class="ad-info">
+		<h3>Детали</h3>
+		
+			<div class="ad-date"><?=date('d-m-Y', strtotime($ad['ad_createDate']))?>
+			</div>
+			
+		<div class="details-list">
+			<div class="first-column">
+				<div class="det-name">Город:</div>
+				<div class="det-name">Животное:</div>
+				<div class="det-name">Порода:</div>
+				<div class="det-name">Пол:</div>
+				<div class="det-name">Возраст:</div>
+			</div>
+			
+			<div class="second-column">
+				<div>
+					<?=$ad['city_name']?>
+				</div>
+				
+				<div>
+					<?=$ad['kind_name']?>
+				</div>
+				
+				<div>
+					<?=$ad['breed_name']?>
+				</div>
+				
+				<div>
+					<?=($ad['ad_animal_sex'] == "1") ? 'мальчик' : 'девочка'?>
+				</div>
+				
+				<div>
+					<?=$ad['ad_animal_age']?>
+				</div>
+			</div>
+	</div>
+	</div>		
+			
+<!--
+			<div class="ad-city"><span class="bold">Город: </span><?=$ad['city_name']?></div>
+			<div class="ad-animal"><span class="bold">Животное: </span><?=$ad['kind_name']?></div>
+			<div class="ad-animal-breed"><span class="bold">Порода: </span><?=$ad['breed_name']?></div>
+			<div class="ad-animal-sex"><span class="bold">Пол: </span><?= ($ad['ad_animal_sex'] == "1") ? 'мальчик' : 'девочка'?></div>
+			<div class="ad-animal-age"><span class="bold">Возраст: </span><?=$ad['ad_animal_age']?></div>
+-->
+	
+		
+	<div class="ad-author <?=($ad['ad_user_id'] == $user_id) ? 'invisible' : ''?>">
+		<h3>Автор объявления</h3>
+		<img id="avatar" src="../<?=isset($user['user_avatar']) ? $user['user_avatar'] : 'upload/default.png'?>" alt="">		
+		
+		<div class="ad-author-name"><?=$user['user_name']?> <?=$user['user_lastname']?></div>
+		<div class="ad-author-telephone"><?=$user['user_tel']?></div>
+		<input id="write-to-author" class="write-message-btn" type="submit" value="написать сообщение">
+	</div>	
+	
+	
+</div>
+	
+</div>
+
+
+
+
+<!--
+	<div class="first-row">
+
+		<h2><?=$ad['ad_title']?></h2>
+		<div class="single-ad-price"><?= (bool)($ad['ad_animal_price']) ? $ad['ad_animal_price'] . ' рублей' : 'Цена не установлена' ?></div>
+	</div>
+
+	<div class="second-row">
+
+		<div class="single-ad-img">
+			<?if(!isset($photos[0]['photo_link'])):?>
+			    <img src="upload/default.png" alt="">
+			    <?else:?>
+			    <div class="owl-carousel owl-theme">
+			    <?foreach($photos as $key => $photo):?>
+			        	<div>
+			        	<img src="<?=$photo['photo_link']?>" alt="">
+			        	</div>
+			        <?endforeach;?>
+			        </div>
+			<?endif;?>
+		</div>
+	</div>
+
+	<div class="third-row">
+
+	<div class="ad-info">
+		<h3>Детали</h3>
+			<div class="ad-date"><?=date('d-m-Y', strtotime($ad['ad_createDate']))?></div>
+			<div class="ad-city"><span class="bold">Город: </span><?=$ad['city_name']?></div>
+			<div class="ad-animal"><span class="bold">Животное: </span><?=$ad['kind_name']?></div>
+			<div class="ad-animal-breed"><span class="bold">Порода: </span><?=$ad['breed_name']?></div>
+			<div class="ad-animal-sex"><span class="bold">Пол: </span><?= ($ad['ad_animal_sex'] == "1") ? 'мальчик' : 'девочка'?></div>
+			<div class="ad-animal-age"><span class="bold">Возраст: </span><?=$ad['ad_animal_age']?></div>
+	</div>
+		
+	<div class="single-ad-text">
+	<h3>Текст объявления</h3>
+	<?=$ad['ad_text']?>
+	</div>
+
+	<div class="ad-author <?=($ad['ad_user_id'] == $user_id) ? 'invisible' : ''?>">
+		<h3>Автор объявления</h3>
+		<img id="avatar" src="../<?=isset($user['user_avatar']) ? $user['user_avatar'] : 'upload/default.png'?>" alt="">		
+		
+		<div class="ad-author-name"><?=$user['user_name']?> <?=$user['user_lastname']?></div>
+		<div class="ad-author-telephone"><?=$user['user_tel']?></div>
+		<input class="write-message-btn" type="submit" value="написать сообщение">
+	</div>	
+
+		
+	</div>
+-->
+
+
+
+    <div class="create-message">
+    <div class="message-content">
+    
+    <p><span class="bold">Сообщение в ответ на объявление: </span><?=$ad['ad_title']?></p>
+    <div class="close"><img src="<?=IMG . 'close-icon.png' ?>" alt=""></div>
+
+    <div class="receiver"><img src="../<?=isset($user['user_avatar']) ? $user['user_avatar'] : 'upload/default.png'?>" alt=""><span class="receiver-name">Кому: <?=$user['user_name']?> <?=$user['user_lastname']?></span></div>
+
+    <form action="">
+	<textarea name="textmessage" cols="40" rows="7" placeholder="Текст сообщения..."></textarea>
+	
+	<input data-author="<?=$user['user_id']?>" data-ad="<?=$ad['ad_id']?>" id="sendMessage" type="submit" value="ОТПРАВИТЬ">
+    </form>
+    </div>
+    </div>
+    
+   <p id="flashMessageAd"></p>
