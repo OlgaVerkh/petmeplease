@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Янв 27 2018 г., 19:33
+-- Время создания: Янв 28 2018 г., 19:54
 -- Версия сервера: 10.1.26-MariaDB
 -- Версия PHP: 7.1.9
 
@@ -54,7 +54,8 @@ INSERT INTO `ad` (`ad_id`, `ad_title`, `ad_createDate`, `ad_text`, `ad_animal_ag
 (37, 'Отдам в хорошие руки черепаху', '2018-01-22 09:28:41', 'Отдаю свою черепашку &quot;Молнию&quot;. Чудесное создание! Только в ласковые и заботливые руки!', '5 лет', '2', '', 5, 58, 4, 3, 12),
 (38, 'Продаю щенка немецкой овчарки', '2018-01-22 09:34:42', 'Продаю щенка немецкой овчарки. Игривая симпатичная девочка. Все документы в наличии, собака привита.', '3 месяца', '2', '3000', 1, 4, 4, 2, 7),
 (40, 'Продам попугаев', '2018-01-27 17:55:34', 'Продаю двух попугаев с клеткой. Очень красивые и изящные птицы', '6 месяцев', '1', '3000', 3, 33, 7, 2, 3),
-(41, 'Куплю сиамскую кошку!', '2018-01-22 11:23:59', 'Очень хочу купить сиамскую кошечку! Жду ваших предложений :)', 'до 3 лет', '2', '', 2, 19, 7, 1, 7);
+(41, 'Куплю сиамскую кошку!', '2018-01-22 11:23:59', 'Очень хочу купить сиамскую кошечку! Жду ваших предложений :)', 'до 3 лет', '2', '', 2, 19, 7, 1, 7),
+(42, 'Продам паука', '2018-01-28 17:19:45', 'Продаю паука-тарантула, возраст 3 месяца. Для любителей экзотики.', '3 месяца', '2', '6000', 4, 44, 4, 2, 7);
 
 -- --------------------------------------------------------
 
@@ -285,7 +286,8 @@ INSERT INTO `message` (`message_id`, `message_createDate`, `message_text`, `mess
 (41, '2018-01-27 13:11:34', 'Привет! Хочу такого щеночка :)', 7, 38, 1, 4),
 (43, '2018-01-22 12:51:45', 'Привет! Хотела бы купить у тебя эту замечательную зверушку :)', 7, 36, 1, 6),
 (45, '2018-01-24 11:43:50', 'Привет! Это круто) когда и где встретимся?', 6, NULL, 1, 7),
-(49, '2018-01-27 16:05:49', 'Привет! У меня есть знакомые, у которых как раз родились замечательные сиамские котята, 4 штуки. Интересует?) ', 4, 41, 1, 7);
+(49, '2018-01-27 16:05:49', 'Привет! У меня есть знакомые, у которых как раз родились замечательные сиамские котята, 4 штуки. Интересует?) ', 4, 41, 1, 7),
+(59, '2018-01-28 18:31:24', 'Привет! Давно хотела купить себе такого паучка. Где и когда встретимся? :)', 7, 42, 0, 4);
 
 -- --------------------------------------------------------
 
@@ -316,7 +318,8 @@ INSERT INTO `photo` (`photo_id`, `photo_link`, `photo_ad_id`) VALUES
 (28, 'upload/7/40/parrot2.jpg', 40),
 (29, 'upload/7/41/Siamskaya-koshka.jpg', 41),
 (30, 'upload/7/40/parrot.jpg', 40),
-(37, 'upload/6/36/guinea_pig.jpg', 36);
+(37, 'upload/6/36/guinea_pig.jpg', 36),
+(38, 'upload/4/42/mohnatyy-pauk.jpg', 42);
 
 -- --------------------------------------------------------
 
@@ -362,7 +365,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `user_email`, `user_pass`, `user_name`, `user_lastname`, `user_tel`, `user_avatar`) VALUES
-(4, 'olga.verkholantceva@mail.ru', '$2y$10$GL1Zb9CYfWpUzPB5rcnTAO0Q/VE7KTz402bKQsi0L72cUQZGMs8si', 'Ольга', 'Верхоланцева', '+7 911 748 74 21', 'upload/4/_DSC1007.jpg'),
+(4, 'olga.verkholantceva@mail.ru', '$2y$10$GL1Zb9CYfWpUzPB5rcnTAO0Q/VE7KTz402bKQsi0L72cUQZGMs8si', 'Ольга', 'Верхоланцева', '+7 911 748 74 22', 'upload/4/avatar.jpg'),
 (5, 'olafre@mail.ru', '$2y$10$yvL2jI903OepDlliQXoqHur8hDi9ONCO7tmV4CMsHJEqj0ZBjqNVm', 'Роман', 'Петров', '+7 924 456 87 54', 'upload/5/DSC_0035.JPG'),
 (6, 'ivanov@mail.ru', '$2y$10$AYh41u7dnrKrHfexN9FTle.vWyOw5nzTxD3f3BcrRN/eBEAKn/sa.', 'Михаил', 'Иванов', '89345673215', 'upload/6/ivanov.jpg'),
 (7, 'masha@mail.ru', '$2y$10$HSlcEx5RIGMqeOVLMYW4/uFK2JJAPD50bdn7RvQzMZKjNHbr6PydC', 'Мария', 'Сидорова', '+7 911 123 65 78', 'upload/7/girl.jpg');
@@ -437,7 +440,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT для таблицы `ad`
 --
 ALTER TABLE `ad`
-  MODIFY `ad_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `ad_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT для таблицы `breed`
@@ -461,13 +464,13 @@ ALTER TABLE `kind`
 -- AUTO_INCREMENT для таблицы `message`
 --
 ALTER TABLE `message`
-  MODIFY `message_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `message_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT для таблицы `photo`
 --
 ALTER TABLE `photo`
-  MODIFY `photo_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `photo_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT для таблицы `section`

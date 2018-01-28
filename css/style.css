@@ -713,12 +713,16 @@ input.search-btn {
 .sign-in-photo {
 	width: 50%;
 	background: url(../img/sign-in.jpg) no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
 	padding: 60px 90px;
 }
 
 .sign-up-photo {
 	width: 50%;
 	background: url(../img/sign-up.jpg) no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
 	padding: 60px 90px;
 }
 
@@ -1351,7 +1355,7 @@ div.latest-ad-img>img {
 	width: 100%;
 	background: url(../img/sign-in.jpg) no-repeat;
     -webkit-background-size: cover;
-    background-size: ;
+    background-size: cover;
 	padding: 80px 40px;
 }
 
@@ -1359,6 +1363,7 @@ div.latest-ad-img>img {
 	width: 100%;
 	background: url(../img/sign-up.jpg) no-repeat;
     -webkit-background-size: cover;
+    background-size: cover;
 	padding: 80px 40px;
 }
 
