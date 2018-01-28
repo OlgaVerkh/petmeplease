@@ -181,8 +181,42 @@
 	</div>
 
     <div class="main-content">
+    
+   <?if(isset($_GET['city']) && isset($_GET['kind']) && isset($_GET['section'])):?>
+    <?if(count($relevantAds) !== 0):?>
+        <h2>Подходящие объявления</h2>
+	    <div class="latest-ads">
+           <?foreach($relevantAds as $key => $ad):?>
+        <div class="latest-ad">
 
-<?if(isset($_GET['kind'])):?>
+		<div class="price">
+		<?= (bool)($ad['ad_animal_price']) ? $ad['ad_animal_price'] . ' рублей' : 'Цена не установлена' ?>
+		</div>
+
+		<div class="flex-container">
+		<div class="ad-img">
+		<img src="../<?=isset($ad['photos'][0]['photo_link']) ? $ad['photos'][0]['photo_link'] : 'upload/default.png'?>" alt="">
+		</div>
+
+		<div class="flex-item">
+		<h3>
+		<a href="<?= SUBDOMAIN?>singleAd?ad_id=<?=$ad['ad_id']?>"><?=$ad['ad_title']?>
+		</a>
+		</h3>
+		<span class="ad-date"><?=date('d-m-Y', strtotime($ad['ad_createDate']))?></span>
+		<p class="ad-city"><?=$ad['city_name']?></p>
+		<p class="ad-text"><?=$ad['ad_text']?></p>
+		</div>
+	    </div>
+
+        </div>
+           <?endforeach?>
+        <?else:?>
+    <p class="not-found">По Вашему запросу объявлений не найдено</p>
+    <?endif;?>
+    <?else:?>
+    
+    <?if(isset($_GET['kind'])):?>
         <?if(count($relAds) !== 0):?>
     <h2>Подходящие объявления</h2>
 	<div class="latest-ads">
@@ -212,13 +246,9 @@
     </div>
            <?endforeach?>
         <?else:?>
-    <p>По Вашему запросу объявлений не найдено</p>
+    <p class="not-found">По Вашему запросу объявлений не найдено</p>
     <?endif;?>
  <?else:?>
-
-
-
-<?if(!isset($_GET['city']) && !isset($_GET['kind']) && !isset($_GET['section'])):?>
 
 	<h2>Последние объявления</h2>
 	<div class="latest-ads">
@@ -243,40 +273,8 @@
 
     </div>
     <?endforeach?>
-
-<?else:?>
-        <?if(count($relevantAds) !== 0):?>
-    <h2>Подходящие объявления</h2>
-	<div class="latest-ads">
-           <?foreach($relevantAds as $key => $ad):?>
-    <div class="latest-ad">
-
-		<div class="price">
-		<?= (bool)($ad['ad_animal_price']) ? $ad['ad_animal_price'] . ' рублей' : 'Цена не установлена' ?>
-		</div>
-
-		<div class="flex-container">
-		<div class="ad-img">
-		<img src="../<?=isset($ad['photos'][0]['photo_link']) ? $ad['photos'][0]['photo_link'] : 'upload/default.png'?>" alt="">
-		</div>
-
-		<div class="flex-item">
-		<h3>
-		<a href="<?= SUBDOMAIN?>singleAd?ad_id=<?=$ad['ad_id']?>"><?=$ad['ad_title']?>
-		</a>
-		</h3>
-		<span class="ad-date"><?=date('d-m-Y', strtotime($ad['ad_createDate']))?></span>
-		<p class="ad-city"><?=$ad['city_name']?></p>
-		<p class="ad-text"><?=$ad['ad_text']?></p>
-		</div>
-	    </div>
-
-    </div>
-           <?endforeach?>
-        <?else:?>
-    <p>По Вашему запросу объявлений не найдено</p>
-    <?endif;?>
     <?endif;?>
     <?endif;?>
     </div>
 	</div>
+

@@ -4,7 +4,7 @@ include_once 'function.php';
 if(checkUser()) {
 	$title = 'Мой профиль';
     $meta = ['charset' => 'utf-8'];
-    $css = ['style.css'];
+    $css = ['account.css'];
     $js = ['script.js', 'profile.js'];
 } 
 else {

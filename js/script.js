@@ -1,3 +1,12 @@
+//Меню для мобилок
+$('.trigger').on('click', function(e) {
+    $('.trigger-span').toggleClass('change-color');
+    $('header').toggleClass('mobile-active');
+    $('.account-nav').toggleClass('mobile-active');
+})
+
+
+
 //Плагин Карусель
 
 $(document).ready(function(){
@@ -52,7 +61,7 @@ setInterval(function() {
             console.log(err);
         }
     });
-}, 1000 * 10);
+}, 1000 * 2);
 
  // функция распознавания лиц
 //    function faceDetectionJquery(options, callback) {

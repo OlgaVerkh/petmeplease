@@ -4,6 +4,7 @@
 <?foreach($meta as $name => $val):?>
     <meta <?=$name.'="'.$val.'"'?> />
     <?endforeach?>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $title ?></title>
     <?foreach($css as $file):?>
     <link rel="stylesheet" href="<?=CSS . 'cssreset.css' ?>"/>

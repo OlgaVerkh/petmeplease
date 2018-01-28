@@ -1,5 +1,4 @@
 var $form = $('.enterForm');
-var message = document.getElementById('flashMessage');
 
 $form.on('submit', function(e) {
     e.preventDefault();
@@ -26,17 +25,14 @@ $form.on('submit', function(e) {
             console.log(data);
             
             if(data.indexOf("Connection to DB failed") !== -1) {
-                message.classList.add('active');
-                message.innerHTML = 'Ошибка соединения с базой данных, попробуйте войти позже';
-                setTimeout( () => message.remove() ,5000);
+                var msg = 'Ошибка соединения с базой данных, попробуйте войти позже';
+                flashMessage(msg);
             } else if(data.indexOf("Password and email do not match") !== -1) {
-                message.classList.add('active');
-                message.innerHTML = 'email и пароль не совпадают, попробуйте ввести данные еще раз';
-                setTimeout( () => message.remove() ,5000);
+                var msg = 'email и пароль не совпадают, попробуйте ввести данные еще раз';
+                flashMessage(msg);
             } else if(data.indexOf("Email does not exist in DB") !== -1) {
-                message.classList.add('active');
-                message.innerHTML = 'Такой email не зарегистрирован в системе, сначала зарегистрируйтесь';
-                setTimeout( () => message.remove() ,5000);
+                var msg = 'Такой email не зарегистрирован в системе, сначала зарегистрируйтесь';
+                flashMessage(msg);
             } else {
 					window.location.pathname = '/accountProfile';
 				}          
@@ -47,3 +43,9 @@ $form.on('submit', function(e) {
     });
     
 });
+
+//Всплывающее сообщение
+function flashMessage(msg) {
+    $('#flashMessage').addClass('active').text(msg);
+    setTimeout( () => $('#flashMessage').removeClass('active').text('') ,7000);
+}

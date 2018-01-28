@@ -101,87 +101,29 @@
 			</div>
 	</div>
 	</div>		
-			
-<!--
-			<div class="ad-city"><span class="bold">Город: </span><?=$ad['city_name']?></div>
-			<div class="ad-animal"><span class="bold">Животное: </span><?=$ad['kind_name']?></div>
-			<div class="ad-animal-breed"><span class="bold">Порода: </span><?=$ad['breed_name']?></div>
-			<div class="ad-animal-sex"><span class="bold">Пол: </span><?= ($ad['ad_animal_sex'] == "1") ? 'мальчик' : 'девочка'?></div>
-			<div class="ad-animal-age"><span class="bold">Возраст: </span><?=$ad['ad_animal_age']?></div>
--->
-	
 		
 	<div class="ad-author <?=($ad['ad_user_id'] == $user_id) ? 'invisible' : ''?>">
-		<h3>Автор объявления</h3>
-		<img id="avatar" src="../<?=isset($user['user_avatar']) ? $user['user_avatar'] : 'upload/default.png'?>" alt="">		
+	    <div class="author-photo">
+	    <img id="avatar" src="../<?=isset($user['user_avatar']) ? $user['user_avatar'] : 'upload/default.png'?>" alt="">
+	    </div>
+	    
+        <div class="author-info">
+        <h3>Автор объявления</h3>
 		
+		<div class="name-and-telephone">
 		<div class="ad-author-name"><?=$user['user_name']?> <?=$user['user_lastname']?></div>
+		
 		<div class="ad-author-telephone"><?=$user['user_tel']?></div>
-		<input id="write-to-author" class="write-message-btn" type="submit" value="написать сообщение">
-	</div>	
-	
-	
-</div>
-	
-</div>
-
-
-
-
-<!--
-	<div class="first-row">
-
-		<h2><?=$ad['ad_title']?></h2>
-		<div class="single-ad-price"><?= (bool)($ad['ad_animal_price']) ? $ad['ad_animal_price'] . ' рублей' : 'Цена не установлена' ?></div>
-	</div>
-
-	<div class="second-row">
-
-		<div class="single-ad-img">
-			<?if(!isset($photos[0]['photo_link'])):?>
-			    <img src="upload/default.png" alt="">
-			    <?else:?>
-			    <div class="owl-carousel owl-theme">
-			    <?foreach($photos as $key => $photo):?>
-			        	<div>
-			        	<img src="<?=$photo['photo_link']?>" alt="">
-			        	</div>
-			        <?endforeach;?>
-			        </div>
-			<?endif;?>
 		</div>
-	</div>
-
-	<div class="third-row">
-
-	<div class="ad-info">
-		<h3>Детали</h3>
-			<div class="ad-date"><?=date('d-m-Y', strtotime($ad['ad_createDate']))?></div>
-			<div class="ad-city"><span class="bold">Город: </span><?=$ad['city_name']?></div>
-			<div class="ad-animal"><span class="bold">Животное: </span><?=$ad['kind_name']?></div>
-			<div class="ad-animal-breed"><span class="bold">Порода: </span><?=$ad['breed_name']?></div>
-			<div class="ad-animal-sex"><span class="bold">Пол: </span><?= ($ad['ad_animal_sex'] == "1") ? 'мальчик' : 'девочка'?></div>
-			<div class="ad-animal-age"><span class="bold">Возраст: </span><?=$ad['ad_animal_age']?></div>
-	</div>
 		
-	<div class="single-ad-text">
-	<h3>Текст объявления</h3>
-	<?=$ad['ad_text']?>
-	</div>
-
-	<div class="ad-author <?=($ad['ad_user_id'] == $user_id) ? 'invisible' : ''?>">
-		<h3>Автор объявления</h3>
-		<img id="avatar" src="../<?=isset($user['user_avatar']) ? $user['user_avatar'] : 'upload/default.png'?>" alt="">		
-		
-		<div class="ad-author-name"><?=$user['user_name']?> <?=$user['user_lastname']?></div>
-		<div class="ad-author-telephone"><?=$user['user_tel']?></div>
-		<input class="write-message-btn" type="submit" value="написать сообщение">
+		<input id="write-to-author" class="write-message-btn" type="submit" value="написать сообщение">
+		</div>
 	</div>	
-
-		
-	</div>
--->
-
+	
+	
+</div>
+	
+</div>
 
 
     <div class="create-message">

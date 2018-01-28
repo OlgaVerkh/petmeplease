@@ -25,8 +25,16 @@ $userMessages = mysqli_query($db, '
 
 
 <body>
+
+<div class="trigger">
+<span class="trigger-span"></span>
+<span class="trigger-span"></span>
+<span class="trigger-span"></span>
+</div>
+
 <div class="account-all-content">
 <div class="account-nav">
+
 	<div class="user-avatar">
 	<img src="../<?=isset($query['user_avatar']) ? $query['user_avatar'] : 'upload/default.png'?>" alt=""></div>
 	<div class="user-name"><?=$query['user_name']?> <?=$query['user_lastname']?></div>
