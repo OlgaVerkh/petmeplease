@@ -8,13 +8,15 @@
         LEFT JOIN ad ON message_idAd = ad_id
         LEFT JOIN user ON message_idUser = user_id
         WHERE message_receiver_id = "' . $user_id . '"
-        ORDER BY message_status;
+        ORDER BY message_status
+        LIMIT 3;
     ');
     
     $userMessages = mysqli_fetch_all($userMessages, MYSQLI_ASSOC);
     
 ?>
 
+<div class="account-messages">
 <?foreach($userMessages as $key => $message):?>
 <div class="account-message">
 	<div class="message-author">
@@ -27,7 +29,7 @@
 	<div class="message-text">
 	<div class="message-date"><?=date('d-m-Y', strtotime($message['message_createDate']))?></div>
 	<p class="bold colored">Входящее сообщение</p>
-	<div class="message-ad-name">Ответ на объявление: <a href=""><?=isset($message['ad_title']) ? $message['ad_title'] : 'не указано'?></a></div>
+	<div class="message-ad-name">Ответ на объявление: <?=isset($message['ad_title']) ? $message['ad_title'] : 'не указано'?></div>
 	<div class="message-text"><p class="bold">Текст сообщения:</p> <p><?=$message['message_text']?></p></div>
 	</div>
 	<div class="message-manage-btns">
@@ -36,7 +38,7 @@
 	</div>
 </div>
 <?endforeach?>
-
+</div>
 
 <div class="create-message">
     <div class="message-content">

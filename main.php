@@ -1,6 +1,6 @@
 <?php
 $arr = (pathinfo($_SERVER['REDIRECT_URL']));
-//print_r($arr);
+
 $url = $arr['basename'];
 if($url == '') {
     $url = 'index';
@@ -11,6 +11,7 @@ $meta = [];
 $css = [];
 $js = [];
 $name = '';
+
 
 include_once 'function.php';
 include_once $url;
@@ -69,8 +70,4 @@ if($user) {
 			'js' => $js
 		]);
 	}
-//$and = '';
-//if(isset($_GET['city']) AND (int)$_GET['city'] > 0) {
-//	$and.= " AND city_id =" . (int)$_GET['city'];
-//}
 ?>

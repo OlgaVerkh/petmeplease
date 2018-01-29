@@ -66,6 +66,29 @@
         $relevantAds[$key]['photos'] = $photos;
     }
     }
+    
+    
+    if(isset($_GET['kind'])) {
+        $kind = (int)$_GET['kind'];
+            $relAds = mysqli_query($db, '
+                SELECT * FROM ad
+                LEFT JOIN city on city_id = ad_city_id
+                WHERE ad_animal_kind_id = "'. $kind .'";
+                ');
+            
+        $relAds = mysqli_fetch_all($relAds, MYSQLI_ASSOC);
+        foreach($relAds as $key => $value) {
+
+        $photos = mysqli_query($db, '
+            SELECT photo_link
+            FROM photo
+            WHERE photo_ad_id = "'.$value['ad_id'].'";
+        ');
+
+        $photos = mysqli_fetch_all($photos, MYSQLI_ASSOC);
+        $relAds[$key]['photos'] = $photos;
+    }
+    }
 
 
 ?>
@@ -131,36 +154,101 @@
 	<div class="animal-categories">
 	<div class="category cats">
 	<img src="<?=IMG . 'category-cats.png' ?>" alt="">
-	<a href="" class="category-btn">Кошки</a>
+	<a href="?kind=2" class="category-btn">Кошки</a>
 	</div>
 
 	<div class="category dogs">
 	<img src="<?=IMG . 'category-dogs.png' ?>" alt="">
-	<a href="?kind_id=2" class="category-btn">Собаки</a></div>
+	<a href="?kind=1" class="category-btn">Собаки</a></div>
 
 	<div class="category birds">
 	<img src="<?=IMG . 'category-birds.png' ?>" alt="">
-	<a href="" class="category-btn">Птицы</a></div>
+	<a href="?kind=3" class="category-btn">Птицы</a></div>
 
 	<div class="category rats">
 	<img src="<?=IMG . 'category-rats.png' ?>" alt="">
-	<a href="" class="category-btn">Грызуны</a></div>
+	<a href="?kind=6" class="category-btn">Грызуны</a></div>
 
 	<div class="category fishes">
 	<img src="<?=IMG . 'category-fishes.png' ?>" alt="">
-	<a href="" class="category-btn">Рыбки,<br>рептилии</a>
+	<a href="?kind=5" class="category-btn">Рыбки,<br>рептилии</a>
 	</div>
 
 	<div class="category exotic">
 	<img src="<?=IMG . 'category-exotic.png' ?>" alt="">
-	<a href="" class="category-btn">Экзотические<br>животные</a>
+	<a href="?kind=4" class="category-btn">Экзотические<br>животные</a>
 	</div>
 	</div>
 
     <div class="main-content">
+    
+   <?if(isset($_GET['city']) && isset($_GET['kind']) && isset($_GET['section'])):?>
+    <?if(count($relevantAds) !== 0):?>
+        <h2>Подходящие объявления</h2>
+	    <div class="latest-ads">
+           <?foreach($relevantAds as $key => $ad):?>
+        <div class="latest-ad">
 
+		<div class="price">
+		<?= (bool)($ad['ad_animal_price']) ? $ad['ad_animal_price'] . ' рублей' : 'Цена не установлена' ?>
+		</div>
 
-<?if(!isset($_GET['city']) && !isset($_GET['kind']) && !isset($_GET['section'])):?>
+		<div class="flex-container">
+		<div class="ad-img">
+		<img src="../<?=isset($ad['photos'][0]['photo_link']) ? $ad['photos'][0]['photo_link'] : 'upload/default.png'?>" alt="">
+		</div>
+
+		<div class="flex-item">
+		<h3>
+		<a href="<?= SUBDOMAIN?>singleAd?ad_id=<?=$ad['ad_id']?>"><?=$ad['ad_title']?>
+		</a>
+		</h3>
+		<span class="ad-date"><?=date('d-m-Y', strtotime($ad['ad_createDate']))?></span>
+		<p class="ad-city"><?=$ad['city_name']?></p>
+		<p class="ad-text"><?=$ad['ad_text']?></p>
+		</div>
+	    </div>
+
+        </div>
+           <?endforeach?>
+        <?else:?>
+    <p class="not-found">По Вашему запросу объявлений не найдено</p>
+    <?endif;?>
+    <?else:?>
+    
+    <?if(isset($_GET['kind'])):?>
+        <?if(count($relAds) !== 0):?>
+    <h2>Подходящие объявления</h2>
+	<div class="latest-ads">
+           <?foreach($relAds as $key => $ad):?>
+    <div class="latest-ad">
+
+		<div class="price">
+		<?= (bool)($ad['ad_animal_price']) ? $ad['ad_animal_price'] . ' рублей' : 'Цена не установлена' ?>
+		</div>
+
+		<div class="flex-container">
+		<div class="ad-img">
+		<img src="../<?=isset($ad['photos'][0]['photo_link']) ? $ad['photos'][0]['photo_link'] : 'upload/default.png'?>" alt="">
+		</div>
+
+		<div class="flex-item">
+		<h3>
+		<a href="<?= SUBDOMAIN?>singleAd?ad_id=<?=$ad['ad_id']?>"><?=$ad['ad_title']?>
+		</a>
+		</h3>
+		<span class="ad-date"><?=date('d-m-Y', strtotime($ad['ad_createDate']))?></span>
+		<p class="ad-city"><?=$ad['city_name']?></p>
+		<p class="ad-text"><?=$ad['ad_text']?></p>
+		</div>
+	    </div>
+
+    </div>
+           <?endforeach?>
+        <?else:?>
+    <p class="not-found">По Вашему запросу объявлений не найдено</p>
+    <?endif;?>
+ <?else:?>
 
 	<h2>Последние объявления</h2>
 	<div class="latest-ads">
@@ -185,34 +273,8 @@
 
     </div>
     <?endforeach?>
-
-<?else:?>
-        <?if(count($relevantAds) !== 0):?>
-    <h2>Подходящие объявления</h2>
-	<div class="latest-ads">
-           <?foreach($relevantAds as $key => $ad):?>
-    <div class="latest-ad">
-
-		<div class="price"><?= (bool)($ad['ad_animal_price']) ? $ad['ad_animal_price'] . ' рублей' : 'Цена не установлена' ?></div>
-
-		<div class="flex-container">
-		<div class="ad-img">
-		<img src="../<?=isset($ad['photos'][0]['photo_link']) ? $ad['photos'][0]['photo_link'] : 'upload/default.png'?>" alt="">
-		</div>
-
-		<div class="flex-item">
-		<h3><a href="<?= SUBDOMAIN?>singleAd?ad_id=<?=$ad['ad_id']?>"><?=$ad['ad_title']?></a></h3>
-		<span class="ad-date"><?=date('d-m-Y', strtotime($ad['ad_createDate']))?></span>
-		<p class="ad-city"><?=$ad['city_name']?></p>
-		<p class="ad-text"><?=$ad['ad_text']?></p>
-		</div>
-	    </div>
-
-    </div>
-           <?endforeach?>
-        <?else:?>
-    <p>По Вашему запросу объявлений не найдено</p>
     <?endif;?>
-<?endif;?>
+    <?endif;?>
     </div>
 	</div>
+

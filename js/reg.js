@@ -1,4 +1,4 @@
-var $form = $('.registrationForm');
+var $form = $('.regForm');
 
 $form.on('submit', function(e) {
     e.preventDefault();

@@ -1,0 +1,1513 @@
+ * {
+	box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'inglobal';
+    src: url('../fonts/inglobal.eot');
+    src: url('../fonts/inglobal.eot') format('embedded-opentype'),
+         url('../fonts/inglobal.woff2') format('woff2'),
+         url('../fonts/inglobal.woff') format('woff'),
+         url('../fonts/inglobal.ttf') format('truetype'),
+         url('../fonts/inglobal.svg#inglobal') format('svg');
+         font-weight: normal;
+         font-style: normal;
+}
+
+@font-face {
+    font-family: 'inglobalb';
+    src: url('../fonts/inglobalb.eot');
+    src: url('../fonts/inglobalb.eot') format('embedded-opentype'),
+         url('../fonts/inglobalb.woff2') format('woff2'),
+         url('../fonts/inglobalb.woff') format('woff'),
+         url('../fonts/inglobalb.ttf') format('truetype'),
+         url('../fonts/inglobalb.svg#inglobalb') format('svg');
+		 font-weight: bold;
+		 font-style: normal;
+}
+
+@font-face {
+    font-family: 'inglobalbi';
+    src: url('../fonts/inglobalbi.eot');
+    src: url('../fonts/inglobalbi.eot') format('embedded-opentype'),
+         url('../fonts/inglobalbi.woff2') format('woff2'),
+         url('../fonts/inglobalbi.woff') format('woff'),
+         url('../fonts/inglobalbi.ttf') format('truetype'),
+         url('../fonts/inglobalbi.svg#inglobalbi') format('svg');
+		 font-weight: bold;
+		 font-style: italic;
+}
+
+@font-face {
+    font-family: 'inglobali';
+    src: url('../fonts/inglobali.eot');
+    src: url('../fonts/inglobali.eot') format('embedded-opentype'),
+         url('../fonts/inglobali.woff2') format('woff2'),
+         url('../fonts/inglobali.woff') format('woff'),
+         url('../fonts/inglobali.ttf') format('truetype'),
+         url('../fonts/inglobali.svg#inglobali') format('svg');
+		 font-weight: normal;
+		 font-style: italic;
+}
+
+body {
+	font-family: "inglobal", sans-serif;
+	background: linear-gradient(45deg, #38504D, #569C7A);
+	color: #fff;
+    height: 100%;
+}
+
+h1 {
+	font-size: 180%;
+	margin: 10px 0;
+}
+
+h2 {
+	font-size: 150%;
+	margin: 10px 0;
+}
+
+h3 {
+	font-weight: bold;
+    font-size: 130%;
+	margin-bottom: 10px;
+}
+
+input, select {
+	font-family: 'inglobal';
+	font-size: 100%;
+	padding: 5px;
+	border: 2px solid #319FA8;
+	border-radius: 10px;
+	background-color: #fff;
+	padding: 5px;
+}
+
+.search-form-columns input, select, label {
+	display: block;
+	color: #38504D;
+}
+
+.search-form-columns input, select {
+    width: 100%;
+}
+
+
+input[type="submit"] {
+  	display: inline-block;
+  	text-transform: uppercase;
+  	text-align: center;
+  	color: #fff;
+  	background: #c4603c;
+  	box-shadow: 0 8px 15px rgba(0,0,0,.1);
+  	transition: .3s;
+	border: none;
+	font-weight: bold;
+	padding: 10px;
+}
+input[type="submit"]:hover {
+ 	background: #7EC77E;
+  	box-shadow: 0 15px 20px rgba(126, 199, 126, 0.4);
+ 	color: white;
+  	transform: translateY(-7px);
+	cursor: pointer;
+}
+
+/*Хэдер*/
+
+header {
+	width: 100%;
+	height: 80px;
+	background-color: #fff;
+	font-size: 100%;
+	box-shadow:  0 10px 6px -6px rgba(0, 0, 0, 0.25);
+}
+
+header>a {
+	float: left;
+	padding: 10px;
+}
+
+header>a>img {
+	max-height: 60px;
+}
+
+nav ul {
+	list-style: none;
+	display: flex;
+	justify-content: space-around;
+	padding-top: 30px;
+}
+
+nav ul li a {
+	text-decoration: none;
+	font-weight: bold;
+	color: #38504D;
+}
+
+nav ul li a:hover {
+	color: #c4603c;
+	-webkit-transition: all 0.5s ease-in;
+    -moz-transition: all 0.5s ease-in;
+    -o-transition: all 0.5s ease-in;
+    transition: all 0.5s ease-in;
+}
+
+nav ul li a:active {
+	color: #c4603c;
+}
+
+header.account {
+	border-radius: 5px;
+}
+
+/*Футер*/
+
+
+footer {
+	background-color: #fff;
+	width: 100%;
+	height: 100px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+footer img {
+	max-height: 100px;
+}
+
+footer p {
+	color: #38504D;
+	line-height: 1.5;
+	margin-left: 70px;
+}
+
+footer a {
+	display: block;
+	text-decoration: underline;
+	color: #38504D;
+}
+
+footer a:hover {
+	color: #c4603c;
+	-webkit-transition: all 0.5s ease-in;
+    -moz-transition: all 0.5s ease-in;
+    -o-transition: all 0.5s ease-in;
+    transition: all 0.5s ease-in;
+}
+
+
+/*Всплывающее сообщение*/
+#flashMessage {
+    display: none;
+}
+#flashMessageAd { 
+    display: none;
+}
+
+#flashMessageProfile { 
+    display: none;
+}
+
+#flashMessage.active {
+    position: absolute;
+    display: block;
+    top: 40%;
+    left: 40%;
+    width: 20%;
+    padding: 20px;
+    background-color: rgba(196, 96, 60, 0.7);
+    text-align: center;
+    color: #fffdf3;
+    display: block;
+}
+
+#flashMessageAd.active {
+    position: absolute;
+    display: block;
+    top: 35%;
+    left: 40%;
+    width: 30%;
+    padding: 50px;
+    line-height: 1.5;
+    background-color: rgba(196, 96, 60, 0.7);
+    text-align: center;
+    color: #fffdf3;
+}
+
+#flashMessageProfile.active {
+    position: absolute;
+    display: block;
+    top: 30%;
+    left: 10%;
+    width: 80%;
+    padding: 50px;
+    line-height: 1.5;
+    background-color: rgba(196, 96, 60, 0.7);
+    text-align: center;
+    color: #fffdf3;
+}
+
+/*Форма создания объявления*/
+
+.addAdForm.disabled {
+    opacity: .5;
+}
+
+p.invisible {
+    display: none;
+}
+
+p.visible {
+    display: block;
+    color: #fffdf3;
+    background-color: rgba(196, 96, 60, 0.7);
+    margin: 10px auto;
+    padding: 15px;
+    text-align: center;
+}
+
+.create {
+	background-color: #fff;
+    color: #38504D;
+	margin-top: 20px;
+	padding: 50px;
+    border-radius: 5px;
+    box-shadow:  0 10px 6px -6px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+}
+
+.create-ad input {
+	width: 100%;
+}
+
+.create-ad div.file-upload {
+    width: 30%;
+}
+
+.create-ad div.file-upload>label {
+    background: #319FA8;
+}
+
+.create-ad input#publish-btn {
+    width: 30%;
+    display:  block;
+    margin: 0 auto;
+}
+
+.create-ad select {
+	padding: 5px 0;
+}
+
+.create-ad label {
+	padding: 15px 0;
+}
+
+.create-ad-flex-container {
+	display: flex;
+	justify-content: space-between;
+}
+
+.create-ad-flex-item {
+	width: 40%;
+}
+
+textarea {
+	border: 2px solid #319FA8;
+	border-radius: 15px;
+	background-color: #fff;
+	width: 100%;
+	padding: 10px;
+	font-family: 'inglobal';
+	font-size: 100%;
+}
+
+.create-ad .choose-photo {
+	margin: 40px 0;
+	justify-content: center;
+}
+
+.create-ad .choose-photo input {
+	width: 30%;
+}
+
+.create .give-ad-btn {
+	width: 30%;
+	margin: 30px auto;
+}
+
+/*Форма написания сообщения*/
+
+.create-message {
+    display: none;
+}
+
+.visible {
+    display: block;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    overflow: auto;
+    z-index: 102;
+}
+
+.message-content {
+    width: 40%;
+    margin: 100px auto;
+    background-color: #fff;
+    padding: 30px;
+    position: relative;
+	border-radius: 5px;
+}
+
+.close {
+    position: absolute;
+	z-index: 1000;
+	top: 15px;
+	left: 93%;
+	width: 20%;
+}
+
+.close:hover {
+    cursor: pointer;
+}
+
+.message-content img {
+    max-width: 20%;
+}
+
+.message-content p {
+	color: #38504D;
+    font-size: 120%;
+	margin: 20px 0;
+}
+
+.message-content .receiver {
+	display: flex;
+	align-items: center;
+	margin: 40px 0;
+}
+
+.message-content .receiver-name {
+	color: #38504D;
+	font-weight: bold;
+	padding-left: 30px;
+}
+
+.message-content form textarea {
+	margin: 10px 0;
+}
+
+#sendMessage {
+    display: block;
+    margin: 10px auto;
+}
+
+
+/*Личный кабинет*/
+
+/*Профиль*/
+
+.profile-info {
+	min-height: 700px;
+	background-color: #fff;
+	margin: 30px 0 0 0;
+	padding: 50px 0 50px 50px;
+    position: relative;
+	color: #38504D;
+	display: flex;
+	justify-content: space-between;
+}
+
+.profile-info form {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.req:after {
+	content: "*";
+	color: #c4603c;
+}
+
+.profile-info input {
+	width: 100%;
+	margin: 20px 0;
+}
+
+.profile-info h3 {
+	color: #38504D;
+}
+
+.file-upload input {
+    display: none;
+}
+
+
+form .file-upload label {
+    display: block;
+	width: 50%;
+  	text-transform: uppercase;
+  	text-align: center;
+  	color: #fff;
+  	background: #c4603c;
+  	box-shadow: 0 8px 15px rgba(0,0,0,.1);
+  	transition: .3s;
+	border: none;
+	border-radius: 10px;
+	font-weight: bold;
+	padding: 10px;
+	margin: 20px 0;
+}
+
+.file-upload>label:hover {
+ 	background: #7EC77E;
+  	box-shadow: 0 15px 20px rgba(126, 199, 126, 0.4);
+ 	color: white;
+  	transform: translateY(-7px);
+	cursor: pointer;
+}
+
+.dog-image {
+	width: 50%;
+	align-self: flex-end;
+	margin-right: -30px;
+}
+
+.dog-image>img {
+	max-width: 100%;
+	
+}
+
+form input.change-btn {
+    width: 50%;
+    border: #c4603c;
+    border-radius: 10px;
+    background-color: #c4603c;
+    font-weight: bold;
+}
+
+/*Общие стили для ЛК, навигация по личному кабинету*/
+
+.account-all-content {
+	display: flex;
+	justify-content: space-around;
+}
+
+.account-nav {
+	display: flex;
+	flex-direction: column;
+    width: 20%;
+    min-height: 800px;
+	align-items: center;
+	background-color: #fff;
+	color: #38504D;
+	margin: 30px;
+	padding: 15px;
+	border-radius: 5px;
+	box-shadow: 0 10px 10px rgba(0,0,0,.1);
+}
+
+.account-second-column {
+	width: 75%;
+	margin: 30px 30px 30px 0;
+}
+
+.user-avatar img {
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+}
+
+.account-nav .user-name {
+	font-weight: bold;
+	margin-bottom: 30px;
+}
+
+.account-nav ul li {
+	text-align: center;
+	margin: 30px 0;
+}
+
+.account-nav .user-avatar {
+	margin: 20px;
+}
+
+.account-nav a {
+	text-decoration: none;
+	color: #38504D;
+}
+
+.account-nav a:hover {
+	color: #c4603c;
+	-webkit-transition: all 0.5s ease-in;
+    -moz-transition: all 0.5s ease-in;
+    -o-transition: all 0.5s ease-in;
+    transition: all 0.5s ease-in;
+}
+
+
+/*Личный кабинет: объявления*/
+
+input.give-ad-btn.account {
+	margin: 30px 0;
+	display: flex;
+}
+
+.account-ad, .account-message {
+	display: flex;
+	background-color: #fff;
+	color: #38504D;
+	margin: 30px 0;
+	padding: 20px;
+    position: relative;
+}
+
+.account-ad-img {
+    max-width: 30%;
+}
+
+.account-ad-img img {
+    max-width: 40%;
+}
+
+.account-ad .ad-text {
+    padding: 0;
+}
+
+.ad-name>a {
+	display: block;
+	text-decoration: none;
+	color: #38504D;
+	font-size: 120%;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.ad-name>a:hover {
+	color: #c4603c;
+	-webkit-transition: all 0.5s ease-in;
+    -moz-transition: all 0.5s ease-in;
+    -o-transition: all 0.5s ease-in;
+    transition: all 0.5s ease-in;
+}
+
+.ad-manage-icons {
+    display: flex;
+    position: absolute;
+    right: 0;
+}
+
+
+/*Личный кабинет: отдельное объявление*/
+
+/*Стили для карусели (блок с фото)*/
+
+.owl-carousel>div {
+	width: 100%;
+	margin: 0 auto;
+	border-radius: 5px;
+}
+
+.owl-dots {
+	width: 30%;
+	display: flex;
+	justify-content: center;
+}
+
+.owl-dot {
+	height: 10px;
+	width: 10px;
+	border-radius: 50%;
+	background-color: #B7D3D1;
+	margin: 5px;
+}
+
+.owl-dot.active-dot {
+	background-color: #c4603c;
+}
+
+
+.bold {
+	font-weight: bold;
+}
+
+.single-ad-edit {
+	width: 100%;
+    min-height: 500px;
+	margin: 30px 0;
+	padding: 15px;
+	background-color: #fff;
+	color: #38504D;
+	border-radius: 5px;
+	box-shadow: 0 10px 10px rgba(0,0,0,.1);
+}
+
+.single-ad-edit>div.first-row {
+	display: flex;
+	justify-content: space-between;
+    padding: 20px;
+}
+
+.single-ad-edit>div.second-row {
+    display: flex;
+}
+
+.single-ad-edit>div.third-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.single-ad-img {
+    width: 50%;
+}
+
+.ad-info {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.ad-details {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+}
+
+.ad-det-first-column, .ad-det-second-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.ad-det-first-column div, .ad-det-second-column div {
+    margin: 5px 0;
+}
+
+.single-ad-img>div {
+	width: 90%;
+	margin: 30px auto;
+}
+
+.single-ad-img img {
+	max-width: 80%;
+    display: block;
+    margin: 0 auto;
+}
+
+.single-ad-edit .ad-text {
+    padding-top: 50px;
+}
+
+.text-and-icons {
+    display: flex;
+    flex-direction: column;
+}
+
+.text-and-icons div.manage-icons {
+    align-self: flex-end;
+    margin-top: 70px;
+    display: flex;
+}
+
+.edit-form {
+    display: none;
+}
+
+.edit-form.visible {
+    display: block;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    overflow: auto;
+    z-index: 102;
+}
+
+.close {
+    position: absolute;
+	z-index: 1000;
+	top: 15px;
+	left: 93%;
+	width: 20%;
+}
+
+.close:hover {
+    cursor: pointer;
+}
+
+.edit-form-content {
+    width: 50%;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 30px;
+    position: relative;
+}
+
+.edit-form-content label {
+    margin: 10px 0;
+}
+
+.edit-form-content input {
+    width: 100%;
+}
+
+.edit-form-content div.file-upload {
+    width: 40%;
+}
+
+.edit-form-content div.file-upload>label {
+    background: #319FA8;
+}
+
+.edit-form-content input#publish-btn {
+    width: 30%;
+    display:  block;
+    margin: 0 auto;
+}
+
+.edit-form-content-photos {
+    display: flex;
+    flex-flow: column;
+    list-style: none;
+    width: 100%;
+}
+
+.edit-form-content-photos img {
+    max-width: 25%;
+}
+
+.edit-form-content-photos li {
+    position: relative;
+    margin: 20px 0px;
+}
+
+.edit-form-content-photos a {
+    position: absolute;
+    top: 25%;
+    right: 0;
+    text-decoration: none;
+    color: #c4603c;
+    font-weight: bold;
+    font-size: 120%;
+}
+
+.edit, .delete {
+    padding-right: 20px;
+}
+
+.edit:hover, .delete:hover {
+    cursor: pointer;
+}
+
+
+
+
+/*Сообщения*/
+
+.account-ad .account-ad-img, .message-author {
+	margin-right: 20px;
+}
+
+.account-message {
+    display: flex;
+    width: 100%;
+	border-radius: 5px;
+	box-shadow: 0 10px 10px rgba(0,0,0,.1);
+}
+
+.message-author {
+    width: 30%;
+	font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.colored {
+    color: #c4603c;
+}
+
+a.colored {
+    color: #c4603c;
+}
+
+.message-author img {
+	margin-bottom: 10px;
+    max-width: 80%;
+}
+
+.message-text {
+	line-height: 1.5;
+    width: 70%;
+}
+
+.message-ad-name a {
+	text-decoration: none;
+	color: #38504D;
+	font-weight: bold;
+}
+
+.message-ad-name a:hover {
+	color: #c4603c;
+	-webkit-transition: all 0.5s ease-in;
+    -moz-transition: all 0.5s ease-in;
+    -o-transition: all 0.5s ease-in;
+    transition: all 0.5s ease-in;
+}
+
+.message-manage-btns {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.message-manage-btns .viewed {
+    background-color: #d9a968;
+    border-radius: 15px;
+    color: #fffdf3;
+    padding: 10px;
+    text-align: center;
+    margin: 10px;
+}
+
+.message-manage-btns .viewed:before {
+    content: "\2714";
+    padding-right: 5px;
+}
+
+.message-manage-btns .viewed:hover, .message-manage-btns .write-message-btn:hover {
+    cursor: pointer;
+}
+
+.message-manage-btns .inactive {
+    background-color: rgb(162, 162, 162);
+    border-radius: 15px;
+    color: #fffdf3;
+    padding: 10px;
+    text-align: center;
+    margin: 10px;
+}
+
+.message-manage-btns .write-message-btn:before {
+    content: "\270E";
+    padding-right: 5px;
+}
+
+.message-manage-btns .write-message-btn {
+    background-color: #c4603c;
+    border-radius: 15px;
+    color: #fffdf3;
+    padding: 10px;
+    text-align: center;
+    margin: 10px;
+}
+
+span.newMessage {
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background-color: #c4603c;
+    margin-left: 5px;
+}
+
+.trigger {
+    display: none;
+}
+
+.trigger-span {
+    display: block;
+    height: 5px;
+    width: 35px;
+    background-color: #319FA8;
+    margin: 5px 0;
+}
+
+@media screen and (max-width: 812px) {
+    
+    body {
+       width: 100%;
+        overflow: auto;
+    }
+    
+    .trigger {
+        display: flex;
+        flex-direction: column;
+        z-index: 103;
+        position: fixed;
+        left: 20px;
+        top: 10px;
+    }
+    
+    .trigger-span.change-color {
+        background-color: #319FA8;
+        transition: all 0.3s ease-in;
+    }
+    
+    /*Навигация*/
+    .account-nav {
+        position: fixed;
+        left: -100%;
+        z-index: 100;
+        transition: all 0.5s ease-in;
+    }
+
+    .account-nav.mobile-active {
+	    width: 60%;
+	    height: 100%;
+        position: fixed;
+        left: 0;
+        top: 0;
+        transition: all 0.5s ease-in;
+	    background-color: #fff;
+	    font-size: 100%;
+	    box-shadow:  0 10px 6px -6px rgba(0, 0, 0, 0.25);
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        border-radius: 0px;
+        padding-top: 40px;
+    }
+    
+    /*Хэдер*/
+    
+    header.account {
+        width: 100%;
+        display: flex;
+        margin-top: 0;
+        border-radius: 0;
+        height: auto;
+    }
+    
+    header.account>a>img {
+        display: none;
+    }
+
+    nav ul {
+        width: 100%;
+	    list-style: none;
+	    display: flex;
+	    padding-top: 10px;
+        margin: 20px 0 20px 40px;
+    }
+
+    nav ul li a {
+        width: 100%;
+	    text-decoration: none;
+	    font-weight: bold;
+	    color: #38504D;
+        display: block;
+        margin: 10px 5px;
+        font-size: 80%;
+    }
+    
+    nav ul li:nth-child(3) {
+        display: none;
+    }
+    
+    /*Футер*/
+
+    footer {
+        font-size: 70%;
+    }
+    
+    footer img {
+	max-height: 70px;
+    }
+
+    footer p {
+	line-height: 1.2;
+    font-size: 80%;
+	margin-left: 20px;
+    }
+
+    footer a {
+    font-size: 80%;
+    padding: 10px;
+    }
+    
+    /*Общие стили для ЛК, навигация по личному кабинету*/
+
+.account-all-content {
+	display: flex;
+	flex-direction: column;
+}
+
+.account-second-column {
+	width: 100%;
+	margin: 0;
+}
+
+.dog-image {
+    display: none;
+}
+    
+   /*Профиль*/
+
+.profile-info {
+	min-height: 92vh;
+	margin: 30px 0;
+	padding: 30px 0 30px 20px;
+}
+
+.profile-info form {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+
+.req:after {
+	content: "*";
+	color: #c4603c;
+}
+
+.profile-info input {
+	width: 100%;
+	margin: 20px 0;
+}
+
+.profile-info h3 {
+	color: #38504D;
+}
+
+.file-upload input {
+    display: none;
+}
+
+form .file-upload label {
+	width: 80%;
+}
+
+form input.change-btn {
+    width: 80%;
+}
+    
+/*Личный кабинет: объявления*/
+
+.account-ads {
+    min-height: 92vh;
+}
+
+input.give-ad-btn-account {
+	margin: 20px;
+	display: flex;
+}
+
+.account-ad-img {
+    width: 50%;
+}
+
+.account-ad-img img {
+    max-width: 100%;
+}
+
+/*Личный кабинет: отдельное объявление*/
+
+/*Стили для карусели (блок с фото)*/
+
+.owl-carousel>div {
+	width: 100%;
+	margin: 0 auto;
+	border-radius: 5px;
+}
+
+.owl-dots {
+	width: 30%;
+	display: flex;
+	justify-content: center;
+}
+
+.owl-dot {
+	height: 10px;
+	width: 10px;
+	border-radius: 50%;
+	background-color: #B7D3D1;
+	margin: 5px;
+}
+
+.owl-dot.active-dot {
+	background-color: #c4603c;
+}
+    
+/*отдельное объявление*/
+
+.bold {
+	font-weight: bold;
+}
+
+.single-ad-edit {
+	width: 100%;
+    min-height: 500px;
+	margin: 30px 0;
+	padding: 15px;
+	background-color: #fff;
+	color: #38504D;
+	border-radius: 5px;
+	box-shadow: 0 10px 10px rgba(0,0,0,.1);
+}
+
+.single-ad-edit>div.first-row {
+	display: flex;
+	flex-direction: column;
+    padding: 20px;
+}
+
+.single-ad-edit>div.second-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.single-ad-edit>div.third-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.single-ad-img {
+    width: 80%;
+    margin: 10px auto;
+}
+
+.ad-info {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.ad-details {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.ad-det-first-column, .ad-det-second-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.ad-det-first-column div, .ad-det-second-column div {
+    margin: 5px 0;
+}
+
+.single-ad-img>div {
+	width: 100%;
+	margin: 0;
+}
+
+.single-ad-img img {
+	max-width: 100%;
+}
+
+.single-ad-edit .ad-text {
+    padding-top: 50px;
+}
+
+.text-and-icons {
+    display: flex;
+    flex-direction: column;
+}
+
+.text-and-icons div.manage-icons {
+    align-self: flex-end;
+    margin-top: 70px;
+    display: flex;
+}
+    
+/*Редактирование объявления*/
+
+.edit-form {
+    display: none;
+}
+    
+.edit-form.visible {
+    display: block;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    overflow: auto;
+    z-index: 102;
+}
+
+.edit-form-content {
+    width: 90%;
+    margin: 30px auto;
+    background-color: #fff;
+    padding: 20px;
+    position: relative;
+    color: #38504D;
+    display: flex;
+    flex-direction: column;
+}
+
+.close {
+    position: absolute;
+	z-index: 1000;
+	top: 15px;
+	left: 90%;
+	width: 20%;
+    margin-top: 5px;
+}
+
+.edit-form-content label {
+    margin: 10px 0;
+}
+
+.edit-form-content input {
+    width: 100%;
+}
+
+.edit-form-content div.file-upload {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.edit-form-content div.file-upload>label {
+    background: #319FA8;
+}
+
+.edit-form-content input#publish-btn {
+    width: 80%;
+    display:  block;
+    margin: 0 auto;
+}
+
+.edit-form-content-photos {
+    display: flex;
+    flex-flow: column;
+    list-style: none;
+    width: 100%;
+}
+
+.edit-form-content-photos img {
+    max-width: 25%;
+}
+
+.edit-form-content-photos li {
+    position: relative;
+    margin: 20px 0px;
+}
+
+.edit-form-content-photos a {
+    position: absolute;
+    top: 25%;
+    right: 0;
+    text-decoration: none;
+    color: #c4603c;
+    font-weight: bold;
+    font-size: 120%;
+}
+    
+/*Форма создания объявления*/
+
+.addAdForm.disabled {
+    opacity: .5;
+}
+
+p.invisible {
+    display: none;
+}
+
+p.visible {
+    display: block;
+    color: #fffdf3;
+    background-color: rgba(196, 96, 60, 0.7);
+    margin: 10px auto;
+    padding: 15px;
+    text-align: center;
+}
+
+.create {
+	background-color: #fff;
+    color: #38504D;
+	margin-top: 20px;
+	padding: 50px;
+    border-radius: 5px;
+    box-shadow:  0 10px 6px -6px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+}
+
+.create-ad input {
+	width: 100%;
+}
+
+.create-ad div.file-upload {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.create-ad div.file-upload>label {
+    background: #319FA8;
+}
+
+.create-ad input#publish-btn {
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+}
+
+.create-ad select {
+	padding: 5px 0;
+}
+
+.create-ad label {
+	padding: 15px 0;
+}
+
+.create-ad-flex-container {
+	display: flex;
+	justify-content: space-between;
+}
+
+.create-ad-flex-item {
+	width: 40%;
+}
+
+textarea {
+	border: 2px solid #319FA8;
+	border-radius: 15px;
+	background-color: #fff;
+	width: 100%;
+	padding: 10px;
+	font-family: 'inglobal';
+	font-size: 100%;
+}
+
+.create-ad .choose-photo {
+	margin: 40px 0;
+	justify-content: center;
+}
+
+.create-ad .choose-photo input {
+	width: 30%;
+}
+
+.create .give-ad-btn {
+	width: 30%;
+	margin: 30px auto;
+}
+
+
+/*Всплывающее сообщение*/
+#flashMessage {
+    display: none;
+}
+#flashMessageAd { 
+    display: none;
+}
+#flashMessageProfile { 
+    display: none;
+}
+
+#flashMessage.active {
+    position: absolute;
+    display: block;
+    top: 30%;
+    left: 10%;
+    width: 80%;
+    padding: 20px;
+    background-color: rgba(196, 96, 60, 0.7);
+    text-align: center;
+    color: #fffdf3;
+    display: block;
+}
+
+#flashMessageAd.active {
+    position: absolute;
+    display: block;
+    top: 60%;
+    left: 10%;
+    width: 80%;
+    padding: 50px;
+    line-height: 1.5;
+    background-color: rgba(196, 96, 60, 0.7);
+    text-align: center;
+    color: #fffdf3;
+    z-index: 1000;
+}
+
+#flashMessageProfile.active {
+    position: absolute;
+    display: block;
+    top: 30%;
+    left: 10%;
+    width: 80%;
+    padding: 50px;
+    line-height: 1.5;
+    background-color: rgba(196, 96, 60, 0.7);
+    text-align: center;
+    color: #fffdf3;
+}
+    
+    
+/*Сообщения*/
+
+.account-ad .account-ad-img, .message-author {
+	margin-right: 20px;
+}
+
+.account-message {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+	border-radius: 0px;
+	box-shadow: 0 10px 10px rgba(0,0,0,.1);
+}
+
+.message-author {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.message-text {
+	line-height: 1.5;
+    width: 90%;
+}
+
+    
+/*Форма написания сообщения*/
+.visible {
+    display: block;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    overflow: auto;
+    z-index: 102;
+}
+
+.message-content {
+    width: 90%;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    position: relative;
+	border-radius: 5px;
+}
+
+.close {
+    position: absolute;
+	z-index: 1000;
+	top: 15px;
+	left: 93%;
+	width: 20%;
+}
+    
+    
+
+    
+    
+    
+}

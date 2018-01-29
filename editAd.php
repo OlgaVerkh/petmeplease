@@ -20,6 +20,9 @@ if (isset($_POST['adTitle']) AND isset($_POST['section']) AND isset($_POST['city
     $photos = $_FILES['file_upload'];
     $ad_id = (int)$_POST['ad_id'];
     
+    echo "<pre>";
+    print_r($photos['size']);
+    echo "</pre>";
     
 //Проверка введенных данных
     if(adTitleCheck($adTitle) AND animalAgeCheck($animalAge) AND commentCheck($comment)) {
@@ -47,22 +50,28 @@ if (isset($_POST['adTitle']) AND isset($_POST['section']) AND isset($_POST['city
         WHERE ad_id = "' . $ad_id . '";
 		');  
 
-//Перебираем файлы, сохраняем их в папку, делаем запись в таблицу photo в БД          
+//Перебираем файлы, сохраняем их в папку, делаем запись в таблицу photo в БД 
+    if($photos['size'][0] > 0) {
         for($i = 0; $i < count($photos['name']); $i++) {
             $fileName = $photos['name'][$i];
             $file_tmp = $photos['tmp_name'][$i];
             move_uploaded_file($file_tmp, "upload/$user_id/$ad_id/$fileName");
             echo "ok";
         
-        $photo_link = "upload/$user_id/$ad_id/$fileName";
+            $photo_link = "upload/$user_id/$ad_id/$fileName";
         
-        mysqli_query($db, '
-        INSERT INTO photo SET
-        photo_link = "' . $photo_link . '",
-        photo_ad_id = "' . $ad_id . '"
-        ');
-    }
-    }    
+            mysqli_query($db, '
+                INSERT INTO photo SET
+                photo_link = "' . $photo_link . '",
+                photo_ad_id = "' . $ad_id . '"
+            ');
+        }
+    } else {
+        $res['status'] = false;
+        $res['errorText'] = 'No photos';
+        echo json_encode($res);
+    }       
+}    
 }
 }
 

@@ -6,6 +6,7 @@ $('.delete').on('click', function(e) {
             url: 'deleteAd.php' + window.location.search,
             success: function(data, status) {
             console.log(data);
+				window.location.pathname = '/accountAds';
             },
             error: function(err) {
                 console.log(err);

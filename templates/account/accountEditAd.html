@@ -13,7 +13,7 @@
         AND ad_id = "'.$ad_id.'";
     ');
     
-    $ad = mysqli_fetch_assoc($ads);   
+    $ad = mysqli_fetch_assoc($ads);  
         
     $photos = mysqli_query($db, '
         SELECT photo_link, photo_id
@@ -48,7 +48,7 @@
     $allKinds = mysqli_fetch_all($k, MYSQLI_ASSOC);
     
     $b = mysqli_query($db, "
-    SELECT * FROM breed WHERE breed_kind_id = 1
+    SELECT * FROM breed
     ");
     $allBreeds = mysqli_fetch_all($b, MYSQLI_ASSOC);
     
@@ -80,23 +80,41 @@
 		</div>
 
 		<div class="ad-info">
-			<div class="ad-date"><?=date('d-m-Y', strtotime($ad['ad_createDate']))?></div>
-			<div class="ad-city"><span class="bold">Город: </span><?=$ad['city_name']?></div>
-			<div class="ad-animal"><span class="bold">Животное: </span><?=$ad['kind_name']?></div>
-			<div class="ad-animal-breed"><span class="bold">Порода: </span><?=$ad['breed_name']?></div>
-			<div class="ad-animal-sex"><span class="bold">Пол: </span><?= ($ad['ad_animal_sex'] == "1") ? 'мальчик' : 'девочка'?></div>
-			<div class="ad-animal-age"><span class="bold">Возраст: </span><?=$ad['ad_animal_age']?></div>
+            
+            <div class="ad-details">
+            <div class="ad-det-first-column">
+                <div class="bold">Дата: </div>
+                <div class="bold">Город: </div>
+                <div class="bold">Животное: </div>
+                <div class="bold">Порода: </div>
+                <div class="bold">Пол: </div>
+                <div class="bold">Возраст: </div>
+            </div>
+            
+            <div class="ad-det-second-column">
+                <div class="ad-date"><?=date('d-m-Y', strtotime($ad['ad_createDate']))?></div>
+                <div class="ad-city"><?=$ad['city_name']?></div>
+			    <div class="ad-animal"><?=$ad['kind_name']?></div>
+			    <div class="ad-animal-breed"><?=$ad['breed_name']?></div>
+			    <div class="ad-animal-sex"><?= ($ad['ad_animal_sex'] == "1") ? 'мальчик' : 'девочка'?></div>
+			    <div class="ad-animal-age"><?=$ad['ad_animal_age']?></div>
+            </div>
+            </div>
+            
+            <div class="text-and-icons">
+                <div class="ad-text"><p class="bold">Текст объявления</p><?=$ad['ad_text']?></div>
+            
+                <div class="manage-icons">
+                    <div class="edit"><img src="<?=IMG . 'edit-icon.png' ?>" alt="редактировать"></div>
+                    <div class="delete"><img src="<?=IMG . 'delete-icon.png' ?>" alt="удалить"></div>
+                </div>
+            </div>
 		</div>
 	</div>
 
 	<div class="third-row">
-
-		<div class="ad-text"><p class="bold">Текст объявления</p><?=$ad['ad_text']?></div>
+ 
         
-        <div class="manage-icons">
-        <div class="edit"><img src="<?=IMG . 'edit-icon.png' ?>" alt="редактировать"></div>
-        <div class="delete"><img src="<?=IMG . 'delete-icon.png' ?>" alt="удалить"></div>
-        </div>
 
 	</div>
 </div>

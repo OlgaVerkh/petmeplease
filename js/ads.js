@@ -72,7 +72,7 @@ for(var prop in formData) {
             break;
         case 'comment': 
             if(!checkComment(formData.comment)) {
-                var msg = 'В поле "текст объявления" допустимы цифры, буквы и знаки препинания';
+                var msg = 'Поле "текст объявления" должно быть заполнено, в нем допустимы цифры, буквы и знаки препинания';
                 check = false;
                 flashMessage(msg);
                 return false;
@@ -113,8 +113,6 @@ for(var prop in formData) {
         success: function(data, status) {
             console.log(data);
 			if(data.indexOf("ad added") !== -1) {
-				var msg = "Ваше объявление опубликовано";
-            	flashMessage(msg);
 				window.location.pathname = '/accountAds';
 			} else if(data.indexOf("Connection to DB failed") !== -1) {
                 var msg = 'Ошибка соединения с базой данных, повторите попытку позже';
