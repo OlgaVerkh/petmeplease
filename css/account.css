@@ -639,7 +639,7 @@ input.give-ad-btn.account {
 
 .single-ad-edit {
 	width: 100%;
-    min-height: 500px;
+    min-height: 80vh;
 	margin: 30px 0;
 	padding: 15px;
 	background-color: #fff;
